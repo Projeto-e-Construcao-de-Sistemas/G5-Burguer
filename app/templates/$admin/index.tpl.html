@@ -1,0 +1,28 @@
+{strip}
+{assign module 'dashboard'}
+{include './_include/default.tpl.html'
+    pageTitle = 'Dashboard'
+    windowName = 'Dashboard'
+    windowIcon = 'dashboard'
+    activeMenu = '#menuItemDashboard'
+    search = []
+    admModule = [
+        'name' => $module,
+        'custom' => true,
+        'table' => [
+            'enabled' => false,
+            'filter' => false,
+            'commands' => []
+        ],
+        'form' => [
+            'enabled' => false,
+            'save' => false
+        ]
+    ]
+    plugins = [
+        'charts',
+        'jquery-ui',
+        'highcharts',
+        'mustache'
+    ]
+}

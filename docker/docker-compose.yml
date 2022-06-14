@@ -1,0 +1,40 @@
+version: '3.5'
+services:
+  # App service
+  app:
+    container_name: burguer_app
+    build: .
+    environment:
+      # XDEBUG_CONFIG: remote_host=host.docker.internal remote_port=9000 remote_enable=1 remote_autostart=1
+      TZ: America/Sao_Paulo
+    env_file:
+      - burguer.env
+    volumes:
+      - ..:/var/www/html
+    depends_on:
+      - db
+    ports:
+      - "80:80"
+    networks:
+      - burguer_net
+
+  # DB service
+  db:
+    container_name: burguer_db
+    image: mysql:5.7
+    command: --max_allowed_packet=32505856
+    volumes:
+      - ../data:/var/lib/mysql
+    environment:
+      TZ: America/Sao_Paulo
+      MYSQL_ROOT_PASSWORD: 123
+      MYSQL_DATABASE: burguer
+    ports:
+      - "3306:3306"
+    networks:
+      - burguer_net
+
+networks:
+  burguer_net:
+    name: burguer_net
+    driver: bridge

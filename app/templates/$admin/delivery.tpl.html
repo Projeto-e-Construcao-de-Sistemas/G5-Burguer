@@ -1,0 +1,21 @@
+{strip}
+{assign module 'delivery'}
+{include './_include/default.tpl.html'
+    pageTitle = 'Taxa de Entrega'
+    windowName = 'Taxa de Entrega'
+    windowIcon = 'truck'
+    activeMenu = '#menuItemDelivery'
+    search = ['placeholder' => 'Buscar...']
+    admModule = [
+        'name' => $module,
+        'custom' => true,
+        'table' => [
+            'enabled' => false,
+            'filter' => false,
+            'commands' => []
+        ]
+    ]
+    plugins = [
+        'inputmask'
+    ]
+}

@@ -1,0 +1,177 @@
+{strip}
+{if $admModule.form.enabled}
+    <div class="box box-solid" data-window="form">
+        <form id="main-form">
+            <div class="box-header with-border">
+                {* ID *}
+                <h3 class="box-title">
+                    <i class="fa fa-hashtag"></i> <strong id="record-id"></strong>
+                </h3>
+
+                <div class="box-tools">
+                    {if $admModule.form.save}
+                        <button type="submit" data-save="form" class="btn btn-box-tool bg-green">
+                            <i class="fa fa-lg fa-check"></i> Salvar
+                        </button>&nbsp;
+                    {/if}
+
+                    {* Close button *}
+                    <a href="#" class="btn btn-box-tool">
+                        <i class="fa fa-lg fa-times"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="box-body">
+                {include "./forms/{$admModule.name}.tpl.html" nocache}
+
+                {if $admModule.form.save}
+                    <div class="row">
+                        <div class="col-xs-12 text-right">
+                            <button type="submit" data-save="form" class="btn bg-green">
+                                <i class="fa fa-lg fa-check"></i> Salvar
+                            </button>
+                        </div>
+                    </div>
+                {/if}
+
+                {if $admModule.form.tabs}
+                    <div class="row reducible">
+                        <div class="col-xs-12">
+                            <ul class="nav nav-tabs">
+                                {foreach $admModule.form.tabs as $tabName => $tabProps}
+                                    <li {if $tabProps@first}class="active"{/if}>
+                                        <a href="#tab-{$tabName}" data-toggle="tab">
+                                            <i class="fa fa-{$tabProps.icon}"></i> <span class="visible-lg-inline">{$tabProps.text}</span>
+                                        </a>
+                                    </li>
+                                {/foreach}
+                            </ul>
+
+                            <div class="tab-content">
+                                {foreach $admModule.form.tabs as $tabName => $tabProps}
+                                    <div class="tab-pane {if $tabProps@first}active{/if}" id="tab-{$tabName}">
+                                        {if $tabProps.table}
+                                            <table id="{$admModule.name}-{$tabName}" class="table table-bordered table-condensed table-hover">
+                                                <thead class="bg-gray">
+                                                    <tr>
+                                                        {include "./forms/{$admModule.name}/tables/{$tabName}.tpl.html"}
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody></tbody>
+                                            </table>
+                                        {else}
+                                            <br>
+
+                                            {include "./forms/{$admModule.name}/tabs/{$tabName}.tpl.html"}
+                                        {/if}
+                                    </div>
+                                {/foreach}
+                            </div>
+                        </div>
+                    </div>
+                {/if}
+            </div>
+        </form>
+    </div>
+{/if}
+
+{if $admModule.form.forms}
+    {foreach $admModule.form.forms as $formName => $formProps}
+        <div {if $formProps.id}id="{$formProps.id}"{/if} class="box {if $formProps.title}box-solid{/if}" data-window="form-{$formName}">
+            <form id="form-{$formName}">
+                <div class="box-header with-border">
+                    {if $formProps.title}
+                        <h3 class="box-title">
+                            {if $formProps.icon}
+                                <i class="fa fa-{$formProps.icon}"></i> &nbsp;
+                            {/if}
+                            {$formProps.title}
+                        </h3>
+                    {/if}
+
+                    <div class="box-tools">
+                        {if $formProps.buttons}
+                            {foreach $formProps.buttons as $btnName => $button}
+                                <a {if $button.id}id="{$button.id}"{/if} href="#{$button.link}" data-button="{$formName}-{$btnName}" class="btn btn-box-tool {if $button.class}{$button.class}{else}btn-default{/if}">
+                                    {if $button.icon}
+                                        <i class="fa fa-lg fa-{$button.icon}"></i> &nbsp;
+                                    {/if}
+                                    {$button.text}
+                                </a>&nbsp;
+                            {/foreach}
+                        {/if}
+
+                        {if $formProps.save}
+                            <button type="submit" data-save="{$formName}" class="btn btn-box-tool bg-green">
+                                <i class="fa fa-lg fa-check"></i> Salvar
+                            </button>&nbsp;
+                        {/if}
+
+                        {* Close button *}
+                        <a href="#" class="btn btn-box-tool" data-close-child="#[id]">
+                            <i class="fa fa-lg fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="box-body">
+                    {include "./forms/{$admModule.name}/{$formName}.tpl.html"}
+                </div>
+
+                {if $formProps.save}
+                    <div class="box-footer text-right">
+                        <button type="submit" data-save="{$formName}" class="btn bg-green">
+                            <i class="fa fa-lg fa-check"></i> Salvar
+                        </button>
+                    </div>
+                {/if}
+            </form>
+        </div>
+
+        {if $formProps.forms}
+            {foreach $formProps.forms as $subformName => $subformProps}
+                <div {if $subformProps.id}id="{$subformProps.id}"{/if} class="box {if $subformProps.title}box-solid{/if}" data-window="form-{$formName}-{$subformName}">
+                    <form id="form-{$formName}-{$subformName}">
+                        <div class="box-header with-border">
+                            {if $subformProps.title}
+                                <h3 class="box-title">
+                                    {if $subformProps.icon}
+                                        <i class="fa fa-{$subformProps.icon}"></i> &nbsp;
+                                    {/if}
+                                    {$subformProps.title}
+                                </h3>
+                            {/if}
+
+                            <div class="box-tools">
+                                {if $subformProps.save}
+                                    <button type="submit" data-save="{$formName}-{$subformName}" class="btn btn-box-tool bg-green">
+                                        <i class="fa fa-lg fa-check"></i> Salvar
+                                    </button>&nbsp;
+                                {/if}
+
+                                {* Close button *}
+                                <a href="#" class="btn btn-box-tool" data-close-child="#[id]/{$formName}[childId]">
+                                    <i class="fa fa-lg fa-times"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="box-body">
+                            {include "./forms/{$admModule.name}/{$formName}-{$subformName}.tpl.html"}
+                        </div>
+
+                        {if $subformProps.save}
+                            <div class="box-footer text-right">
+                                <button type="submit" data-save="{$formName}-{$subformName}" class="btn bg-green">
+                                    <i class="fa fa-lg fa-check"></i> Salvar
+                                </button>
+                            </div>
+                        {/if}
+                    </form>
+                </div>
+            {/foreach}
+        {/if}
+    {/foreach}
+{/if}

@@ -1,0 +1,231 @@
+{strip}
+{nocache}
+    <header class="main-header">
+        {* Logo *}
+        {* <a href="#" class="logo visible-xs">
+            <span class="logo-lg">
+                <img src="{assetFile file='img/favicon-32.png'}" alt="{$SYSTEM_NAME}"> <b>{$windowName}</b>
+            </span>
+        </a> *}
+        {* <a href="{$urlAdministrative}" class="logo hidden-xs"> *}
+        <a href="{$urlAdministrative}" class="logo">
+            {* mini logo for sidebar mini 50x50 pixels *}
+            <span class="logo-mini">
+                {* <img src="{assetFile file='img/favicon-32.png'}" alt="{$SYSTEM_NAME}"> *}
+            </span>
+            {* logo for regular state and mobile devices *}
+            <span class="logo-lg">
+                {* <img src="{assetFile file='img/favicon-32.png'}" alt="{$SYSTEM_NAME}"> <b>{$SYSTEM_NAME}</b> <small class="hidden-xs">Admin</small> *}
+            </span>
+        </a>
+
+        {* Header Navbar: style can be found in header.less *}
+        <nav class="navbar navbar-static-top" role="navigation">
+            {* Sidebar toggle button *}
+            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+
+            {* Windows name *}
+            {* {if $windowName}
+                <a href="#" class="window-name navbar-text hidden-xs">
+                    <i class="fa fa-{$windowIcon} fa-fw"></i> {$windowName}
+                </a>
+            {/if} *}
+
+            {* Navbar Right Menu *}
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    {* Messages: style can be found in dropdown.less *}
+                    <li class="dropdown messages-menu" style="display: none;">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-envelope-o"></i>
+                            <span class="label label-danger">0</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">Você tem 0 mensagens</li>
+                            <li>
+                                <!-- inner menu: contains the actual data -->
+                                <ul class="menu">
+                                    {*<li><!-- start message -->
+                                        <a href="#">
+                                            <div class="pull-left">
+                                                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
+                                            </div>
+                                            <h4>
+                                                Support Team
+                                                <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                                            </h4>
+                                            <p>Why not buy a new awesome theme?</p>
+                                        </a>
+                                    </li><!-- end message -->*}
+                                </ul>
+                            </li>
+                            <li class="footer"><a href="{$urlMessages}">Ver todas as mensagens</a></li>
+                        </ul>
+                    </li>
+
+                    {if $admModule.form.forms}
+                        {foreach $admModule.form.forms as $form => $props}
+                            {if $props.commands}
+                                {foreach $props.commands as $action => $actProps}
+                                    <li data-menu="form-{$form}" data-form-{$form}-action="{$action}" {if $actProps.hidable}class="hidable"{/if} style="display:none;">
+                                        <a href="" data-href="#[id]/{$form}[childId]/{$action}">
+                                            <i class="fa fa-{$actProps.icon}"></i> <span class="hidden-xs hidden-sm">{$actProps.text}</span>
+                                        </a>
+                                    </li>
+                                {/foreach}
+                            {/if}
+                        {/foreach}
+                    {/if}
+
+                    {if $admModule.form.commands}
+                        {foreach $admModule.form.commands as $action => $props}
+                            <li data-menu="form" data-form-action="{$action}" {if $props.hidable}class="hidable"{/if} style="display:none;">
+                                <a href="" data-href="#[id]/{$action}">
+                                    <i class="fa fa-{$props.icon}"></i> <span class="hidden-xs hidden-sm">{$props.text}</span>
+                                </a>
+                            </li>
+                        {/foreach}
+                    {/if}
+
+                    {if $admModule.table.enabled}
+                        {* New record menu *}
+                        {if $admModule.table.commands.new}
+                            <li data-menu="table" style="display:none;">
+                                <a href="#new">
+                                    <i class="fa fa-plus-circle"></i> <span class="hidden-xs">Novo</span>
+                                </a>
+                            </li>
+                        {/if}
+
+                        {* Filter box in main menu *}
+                        {if $admModule.table.filter}
+                            <li class="dropdown filter-menu" data-menu="table" style="display:none;">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-filter"></i> <span class="hidden-xs">Filtros</span>
+                                </a>
+                                <div id="filter-box" class="dropdown-menu bg-gray-light">
+                                    <form role="filter" name="default" data-target="#filter-box">
+                                        {include "./filterboxes/{$admModule.name}.tpl.html" nocache}
+
+                                        <div class="row">
+                                            <div class="col-xs-12 btn-container-right">
+                                                <button type="button" class="btn btn-default" data-filter-clear="#filter-box">
+                                                    <i class="fa fa-close fa-fw"></i> Limpar
+                                                </button>
+                                                <button type="submit" class="btn btn-primary">
+                                                    <i class="fa fa-search fa-fw"></i> Aplicar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </li>
+                        {/if}
+
+                        {* Refresh table in main menu *}
+                        <li data-menu="table" style="display:none;">
+                            <a href="#refresh" data-target="#dataTable">
+                                <i class="fa fa-refresh"></i> <span class="hidden-xs">Atualizar</span>
+                            </a>
+                        </li>
+                    {/if}
+
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    {* Left side column. contains the logo and sidebar *}
+    <aside class="main-sidebar">
+        {* sidebar: style can be found in sidebar.less *}
+        <section class="sidebar">
+            {* Sidebar user panel *}
+            {if $userLoggedIn}
+                <div class="user-panel">
+                    <div class="pull-left image">
+                        <img src="" class="img-circle" alt="User Image">
+                    </div>
+                    <div class="pull-left info">
+                        <p><a href="{$urlProfile}">{$userLoggedIn->name}</a></p>
+
+                        {* <a href="#"><i class="fa fa-circle text-success"></i> Online</a> *}
+                        <a href="{$urlAdmSignOut}"><i class="fa fa-sign-out"></i> Sair</a>
+                    </div>
+                </div>
+            {/if}
+
+            {* search form *}
+            {if $search}
+                <form action="#" method="get" class="sidebar-form">
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control" placeholder="{$search.placeholder}"/>
+                        <span class="input-group-btn">
+                            <button type='submit' name='search' id='search-btn' class="btn btn-flat">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            {/if}
+
+            {* sidebar menu: : style can be found in sidebar.less *}
+            <ul class="sidebar-menu">
+                {*<li class="header">MENU PRINCIPAL</li>*}
+                <li id="menuItemDashboard">
+                    <a href="{$urlAdministrative}">
+                        <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                    </a>
+                </li>
+
+                {foreach $mainMenu as $menuId => $menuData}
+                    {if $menuData.link}
+                        <li id="{$menuId}">
+                            <a href="{$menuData.link}">
+                                <i class="fa fa-{$menuData.icon}"></i> <span>{$menuData.desc|escape}</span>
+                            </a>
+                        </li>
+                    {else}
+                        <li id="{$menuId}" class="treeview">
+                            <a href="#">
+                                <i class="fa fa-{$menuData.icon}"></i> <span>{$menuData.desc|escape}</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+
+                            <ul class="treeview-menu">
+                                {foreach $menuData.items as $itemId => $itemData}
+                                    {if $itemData.link}
+                                        <li id="{$itemId}" class="{if !$itemData.enabled}disabled{/if}">
+                                            <a href="{$itemData.link}">
+                                                <i class="fa fa-{$itemData.icon}"></i> <span>{$itemData.desc|escape}</span>
+                                            </a>
+                                        </li>
+                                    {else}
+                                        <li id="{$itemId}" class="treeview">
+                                            <a href="#">
+                                                <i class="fa fa-{$itemData.icon}"></i>
+                                                <span>{$itemData.desc|escape}</span>
+                                                <i class="fa fa-angle-left pull-right"></i>
+                                            </a>
+
+                                            <ul class="treeview-menu">
+                                                {foreach $itemData.items as $subItemId => $subItemData}
+                                                    <li id="{$subItemId}" class="{if !$subItemData.enabled}disabled{/if}">
+                                                        <a href="{$subItemData.link}">
+                                                            <i class="fa fa-{$subItemData.icon}"></i> <span>{$subItemData.desc|escape}</span>
+                                                        </a>
+                                                    </li>
+                                                {/foreach}
+                                            </ul>
+                                        </li>
+                                    {/if}
+                                {/foreach}
+                            </ul>
+                        </li>
+                    {/if}
+                {/foreach}
+            </ul>
+        </section>
+    </aside>
+{/nocache}

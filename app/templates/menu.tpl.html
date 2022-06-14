@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+{strip}
+{$appController=[
+    controller => "",
+    options    => []
+]}
+{$plugins=[
+    'bootstrap'
+]}
+<html>
+{include "./_include/head.tpl.html" nocache}
+<body>
+    {include "./_include/navigation.tpl.html" nocache}
+    <div class="container">
+        <nav id="menu-navigation" class="navbar justify-content-center navbar-light text-bg-secondary">
+            <div class="container-fluid">
+                <a class="navbar-brand menu-nav-item" href="#meal">Hambúrgueres</a>
+                <a class="navbar-brand menu-nav-item" href="#side-dish">Acompanhamentos</a>
+                <a class="navbar-brand menu-nav-item" href="#drinks">Bebidas</a>
+            </div>
+        </nav>
+    </div>
+    <div id="menu" class="container d-flex flex-wrap text-bg-secondary">
+        <h2 id="meal" class="menu-categories">Hambúrgueres</h2>
+        <div class="container d-flex flex-wrap">
+            <div class="col d-flex flex-wrap">
+                {foreach $products as $product}
+                    {if $product.type == 1}
+                        <div class="prod-box" class="col" data-id="{$product.id}">
+                            <a class="prod-cont" href="#">
+                                <div class="row">
+                                        <img class="prod-img" src="{assetFile file="img/{$product.url}"}">
+                                </div>
+                                <div class="row">
+                                        <p>{$product.description}</p>
+                                </div>
+                                <div class="row">
+                                    <div id="prod-menu" class="d-flex justify-content-between">
+                                        <p class="prod-price">Preço: R$ {$product.price}
+                                        <button class="buy-btn">Comprar</button>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    {/if}
+                {/foreach}
+            </div>
+        </div>
+        <h2 id="side-dish" class="menu-categories">Acompanhamentos</h2>
+        <div class="container d-flex flex-wrap">
+            <div class="col d-flex flex-wrap">
+                {foreach $products as $product}
+                    {if $product.type == 2}
+                        <div class="prod-box" class="col" data-id="{$product.id}">
+                            <a class="prod-cont" href="#">
+                                <div class="row">
+                                        <img class="prod-img" src="{assetFile file="img/{$product.url}"}">
+                                </div>
+                                <div class="row">
+                                        <p>{$product.description}</p>
+                                </div>
+                                <div class="row">
+                                    <div id="prod-menu" class="d-flex justify-content-between">
+                                        <p class="prod-price">Preço: R$ {$product.price}
+                                        <button class="buy-btn">Comprar</button>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    {/if}
+                {/foreach}
+            </div>
+        </div>
+        <h2 id="drinks" class="menu-categories">Bebidas</h2>
+        <div class="container d-flex flex-wrap">
+            <div class="col d-flex flex-wrap">
+                {foreach $products as $product}
+                    {if $product.type == 3}
+                        <div class="prod-box" class="col" data-id="{$product.id}">
+                            <a class="prod-cont" href="#">
+                                <div class="row">
+                                        <img class="prod-img" src="{assetFile file="img/{$product.url}"}">
+                                </div>
+                                <div class="row">
+                                        <p>{$product.description}</p>
+                                </div>
+                                <div class="row">
+                                    <div id="prod-menu" class="d-flex justify-content-between">
+                                        <p class="prod-price">Preço: R$ {$product.price}
+                                        <button class="buy-btn">Comprar</button>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    {/if}
+                {/foreach}
+            </div>
+        </div>
+        {* <div class="prod-box" class="col">
+            <a class="prod-cont" href="#">
+                <div class="row">
+                        <img class="prod-img" src="{assetFile file="img/ham2.jpg"}">
+                </div>
+                <div class="row">
+                        <p>Texto com a descrição do produto, ingrediente e afins</p>
+                </div>
+                <div class="row">
+                    <div id="prod-menu" class="d-flex justify-content-between">
+                        <p class="prod-price">Preço: R$ 40,50
+                        <button class="buy-btn">Comprar</button>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="prod-box" class="col">
+            <a class="prod-cont" href="#">
+                <div class="row">
+                        <img class="prod-img" src="{assetFile file="img/ham2.jpg"}">
+                </div>
+                <div class="row">
+                        <p>Texto com a descrição do produto, ingrediente e afins</p>
+                </div>
+                <div class="row">
+                    <div id="prod-menu" class="d-flex justify-content-between">
+                        <p class="prod-price">Preço: R$ 40,50
+                        <button class="buy-btn">Comprar</button>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="prod-box" class="col">
+            <a class="prod-cont" href="#">
+                <div class="row">
+                        <img class="prod-img" src="{assetFile file="img/ham2.jpg"}">
+                </div>
+                <div class="row">
+                        <p>Texto com a descrição do produto, ingrediente e afins</p>
+                </div>
+                <div class="row">
+                    <div id="prod-menu" class="d-flex justify-content-between">
+                        <p class="prod-price">Preço: R$ 40,50
+                        <button class="buy-btn">Comprar</button>
+                    </div>
+                </div>
+            </a>
+        </div> *}
+    </div>
+
+
+    {include "./_include/scripts.tpl.html" nocache}
+    {include "./_include/footer.tpl.html" nocache}
+    <script type="text/javascript">
+        "use strict";
+
+        (function () {
+
+            mainApp.ajax({
+                url: 'products',
+                method: 'GET',
+                data: {
+                    start: 0,
+                    length: 0,
+                },
+                success: function (result) {
+                }
+            });
+        })();
+
+    </script>
+</body>

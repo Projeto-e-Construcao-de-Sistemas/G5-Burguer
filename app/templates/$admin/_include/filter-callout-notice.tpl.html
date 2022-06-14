@@ -1,0 +1,14 @@
+{strip}
+<div id="{if $filterNoticeId}{$filterNoticeId}{else}filtering-notice{/if}" class="hidden">
+    <div class="callout callout-info">
+        <button type="button" class="close" data-filter-clear="{if $filterTarget}{$filterTarget}{else}#filter-box{/if}" data-toggle="tooltip" data-original-title="Remover todos os filtros">
+            <i class="fa fa-close"></i>
+        </button>
+        <p class="text-center">
+            <span class="badge bg-blue pull-left">
+                <i class="icon fa fa-info"></i>
+            </span>
+            O resultado da listagem está sob efeito de um filtro.
+        </p>
+    </div>
+</div>

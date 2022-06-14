@@ -1,0 +1,56 @@
+{strip}
+{nocache}
+    {$appController = [
+        controller => {assetFile file='app/admin/admin-lib.js'},
+        activeMenu => $activeMenu,
+        options => [
+            module => {assetFile file="app/admin/{$admModule.name}.js"}
+        ]
+    ]}
+{/nocache}
+{include './head.tpl.html' nocache}
+{include './navigation.tpl.html' nocache}
+
+<div class="content-wrapper">
+    {* Windows name *}
+    {if $windowName}
+        <section class="content-header">
+            <h1>
+                <i class="fa fa-{$windowIcon} fa-fw"></i> {$windowName}
+                {* <small>subtitle</small> *}
+            </h1>
+
+            <ol class="breadcrumb">
+                <li><a href="{$urlHome}"><i class="fa fa-home"></i> Home</a></li>
+                <li>
+                    <a href="{$urlAdministrative}">
+                        <i class="fa fa-dashboard"></i> Dashboard
+                    </a>
+                </li>
+                <li class="active" data-menu="table" style="display:none;">
+                    <i class="fa fa-{$windowIcon}"></i> {$windowName}
+                </li>
+                <li class="active" data-menu="form" style="display:none;">
+                    <a href="#" data-href="#"><i class="fa fa-{$windowIcon}"></i> {$windowName}</a>
+                </li>
+            </ol>
+        </section>
+    {/if}
+
+    {* Main content *}
+    <section class="content">
+        {* Table area *}
+        {include './main-table-window.tpl.html' nocache}
+
+        {* Details area *}
+        {include './main-form-window.tpl.html' nocache}
+
+        {* Custom content *}
+        {if $admModule.custom}
+            {include "./custom/{$admModule.name}.tpl.html" nocache}
+        {/if}
+    </section>
+</div>
+
+{include './callout-error.tpl.html'}
+{include './footer.tpl.html' nocache}

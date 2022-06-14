@@ -1,0 +1,26 @@
+{strip}
+{if $admModule.table.enabled}
+    <div id="list-box" class="box box-default" data-window="table">
+        <div class="box-body">
+            {if $admModule.table.filter}
+                {* Filtering notice callout *}
+                {include './filter-callout-notice.tpl.html'}
+            {/if}
+
+            {if $admModule.table.previous}
+                {include "./tables/previous/{$admModule.name}.tpl.html" nocache}
+            {/if}
+
+            {* Grid *}
+            <table id="dataTable" class="table table-bordered table-condensed table-hover">
+                <thead class="bg-gray">
+                    <tr>
+                        {include "./tables/{$admModule.name}.tpl.html" nocache}
+                    </tr>
+                </thead>
+
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+{/if}

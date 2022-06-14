@@ -1,0 +1,105 @@
+{strip}
+{assign module 'orders'}
+{include './_include/default.tpl.html'
+    pageTitle = 'Pedidos'
+    windowName = 'Pedidos'
+    windowIcon = 'shopping-bag'
+    activeMenu = '#menuItemFinancial #menuItemOrderUsers'
+    search = ['placeholder' => 'Buscar...']
+    admModule = [
+        'name' => $module,
+        'table' => [
+            'enabled' => true,
+            'filter' => true,
+            'commands' => [
+                'new' => false
+            ]
+        ],
+        'form' => [
+            'enabled' => true,
+            'save' => false,
+            'commands' => [
+                'change-seller' => [
+                    'icon' => 'user-circle-o',
+                    'text' => 'Alterar vendedor',
+                    'hidable' => true
+                ],
+                'approve' => [
+                    'icon' => 'check',
+                    'text' => 'Approvar',
+                    'hidable' => true
+                ],
+                'cancel' => [
+                    'icon' => 'times',
+                    'text' => 'Cancelar',
+                    'hidable' => true
+                ],
+                'pdf' => [
+                    'icon' => 'file-pdf-o',
+                    'text' => 'Download PDF',
+                    'hidable' => true
+                ]
+            ],
+            'forms' => [
+                'change-seller' => [
+                    'title' => 'Alteração do vendedor do pedido',
+                    'id' => '',
+                    'save' => true
+                ],
+                'product' => [
+                    'title' => 'Item <i class="fa fa-hashtag text-sm"></i><strong id="order-item-id"></strong>',
+                    'id' => '',
+                    'save' => false,
+                    'commands' => [
+                        'delivered' => [
+                            'icon' => 'truck',
+                            'text' => 'Entregue'
+                        ],
+                        'pay-store' => [
+                            'icon' => 'bank',
+                            'text' => 'Creditar a loja'
+                        ],
+                        'commissionate' => [
+                            'icon' => 'graduation-cap',
+                            'text' => 'Liberar comissão'
+                        ],
+                        'cancel' => [
+                            'icon' => 'times-circle',
+                            'text' => 'Cancelar'
+                        ]
+                    ]
+                ],
+                'transaction' => [
+                    'title' => 'Transação <i class="fa fa-hashtag text-sm"></i><strong id="order-transaction-id"></strong>',
+                    'id' => '',
+                    'save' => false,
+                    'commands' => [
+                        'approve' => [
+                            'icon' => 'check',
+                            'text' => 'Confirmar pagamento'
+                        ],
+                        'refund' => [
+                            'icon' => 'recycle',
+                            'text' => 'Reembolsar'
+                        ]
+                    ],
+                    'forms' => [
+                        'refund' => [
+                            'title' => 'Reelbolso da transação <i class="fa fa-hashtag text-sm"></i><strong id="order-transaction-refund-id"></strong>',
+                            'id' => '',
+                            'save' => true
+                        ]
+                    ]
+                ]
+            ]
+        ]
+    ]
+    plugins = [
+        'crypto-js',
+        'daterangepicker',
+        'inputmask',
+        'json-viewer',
+        'mustache',
+        'select2'
+    ]
+}

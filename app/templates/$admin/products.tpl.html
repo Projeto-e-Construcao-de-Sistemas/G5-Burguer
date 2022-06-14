@@ -1,0 +1,30 @@
+{strip}
+{assign module 'products'}
+{include './_include/default.tpl.html'
+    pageTitle = 'Produtos'
+    windowName = 'Produtos'
+    windowIcon = 'barcode'
+    activeMenu = '#menuItemRegister #menuItemProducts'
+    search = ['placeholder' => 'Buscar...']
+    admModule = [
+        'name' => $module,
+        'table' => [
+            'enabled' => true,
+            'filter' => false,
+            'commands' => [
+                'new' => true
+            ]
+        ]
+    ]
+    plugins = [
+        'cropper',
+        'fileupload',
+        'inputmask',
+        'jquery-ui',
+        'json-viewer',
+        'load-image',
+        'mustache',
+        'select2',
+        'tokenize2'
+    ]
+}

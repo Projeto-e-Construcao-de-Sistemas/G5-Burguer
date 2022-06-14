@@ -1,0 +1,46 @@
+{strip}
+{nocache}
+{* AdminLTE App *}
+<script src="{assetFile file='AdminLTE/app.js'}" type="text/javascript"></script>
+
+{* The Main Application *}
+<script src="{assetFile file='app/main.js'}" type="text/javascript"></script>
+<script type="text/javascript">
+    "use strict";
+
+    const uid = '{if $userLoggedIn}{$userLoggedIn->getPK()}{/if}';
+    const admModules = {$userLoggedIn->modules|@json_encode nofilter};
+
+    $(function () {
+        {* // Initialize de app controller *}
+        mainApp.setDialogTheme('modern');
+        mainApp.setIconError('fa fa-2x fa-exclamation-circle text-danger');
+        {* mainApp.setIconSuccess('icon-check text-success'); *}
+
+        {if $mainAppPlugins}
+            {foreach $mainAppPlugins as $plugin}
+                mainApp.loadPlugin('{$plugin.name}', '{$plugin.url}');
+            {/foreach}
+        {/if}
+
+        if ('{$appController}') {
+            mainApp.init({$appController|@json_encode nofilter});
+        } else {
+            mainApp.init({ });
+        }
+
+        {* // Initialize all iCheck input checkboxes *}
+        $('input').iCheck({
+            checkboxClass: 'icheckbox_minimal-blue',
+            radioClass: 'iradio_minimal-blue',
+            increaseArea: '20%'
+        });
+
+        $('.treeview-menu > li > a').on('click', function (evt) {
+            if ($(this).parent().hasClass('disabled')) {
+                evt.preventDefault();
+            }
+        });
+    });
+</script>
+{/nocache}

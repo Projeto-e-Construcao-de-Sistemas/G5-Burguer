@@ -1,0 +1,347 @@
+{strip}
+{* Order data *}
+<div id="order-data" class="row">
+    <template id="tpl-order">
+        {* Order number *}
+        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 form-group has-float-label">
+            <div class="input-group">
+                <input type="text" class="form-control" value="{{ order_number }}" readonly>
+                <label>Nº do pedido</label>
+            </div>
+        </div>
+
+        {* Discount coupon *}
+        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 form-group has-float-label">
+            <div class="input-group">
+                <input type="text" class="form-control" value="{{ discount_coupon }}" readonly>
+                <label>Cupom de desconto</label>
+                <span class="input-group-btn" data-toggle="tooltip" data-original-title="Cupom de Desconto">
+                    <a id="coupon-id" class="btn btn-flat btn-vk" href="">
+                        <i class="fa fa-fw fa-scissors"></i>
+                    </a>
+                </span>
+            </div>
+        </div>
+
+        {* <div class="row visible-xs"></div> *}
+
+        {* Order created at date *}
+        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 form-group has-float-label">
+            <div class="input-group">
+                <input type="text" class="form-control" value="{{ createdAt }}" readonly>
+                <label>Data do pedido</label>
+            </div>
+        </div>
+
+        {* Order approved at date *}
+        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 form-group has-float-label">
+            <div class="input-group">
+                <input type="text" class="form-control" value="{{ approvedAt }}" readonly>
+                <label>Data da aprovação</label>
+            </div>
+        </div>
+
+        {* Order situation *}
+        <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4 form-group has-float-label">
+            <div class="input-group">
+                <span class="input-group-addon">{{{ situationIcon }}}</span>
+                <input class="form-control" value="{{ situationText }}" readonly>
+                <label>Situação</label>
+            </div>
+        </div>
+
+        {* Order referral *}
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 form-group has-float-label">
+            <div class="input-group">
+                <span class="input-group-addon">{{{ referralIcon }}}</span>
+                <input class="form-control" value="{{ referralText }}" readonly>
+                <span class="input-group-btn" data-toggle="tooltip" data-original-title="Orçamento">
+                    <a id="quotation-id" class="btn btn-flat btn-vk" href="">
+                        <i class="fa fa-fw fa-calculator"></i>
+                    </a>
+                </span>
+                <label>Referência</label>
+            </div>
+        </div>
+
+        {* Customer's name *}
+        <div class="col-xs-12 col-md-6 col-lg-5 form-group has-float-label">
+            <div class="input-group">
+                <input class="form-control" value="{{ user.name }}" readonly>
+                <span class="input-group-btn" data-toggle="tooltip" data-original-title="Cadastro do cliente">
+                    <a class="btn btn-flat btn-vk" href="/users#{{ user_id }}">
+                        <i class="fa fa-fw fa-user"></i>
+                    </a>
+                </span>
+                <label>Comprador</label>
+            </div>
+        </div>
+
+        {* Customer's e-mail *}
+        <div class="col-xs-12 col-md-6 col-lg-4 form-group has-float-label">
+            <div class="input-group">
+                <input class="form-control" value="{{ user.email }}" readonly>
+                <label>e-mail</label>
+            </div>
+        </div>
+
+        {{ #seller.name }}
+            {* Seller's name *}
+            <div class="col-xs-12 col-md-6 form-group has-float-label">
+                <div class="input-group">
+                    <input class="form-control" value="{{ seller.name }}" readonly>
+                    <label>Vendedor</label>
+                </div>
+            </div>
+
+            {* Seller's e-mail *}
+            <div class="col-xs-12 col-md-6 form-group has-float-label">
+                <div class="input-group">
+                    <input class="form-control" value="{{ seller.email }}" readonly>
+                    <label>e-mail do vendedor</label>
+                </div>
+            </div>
+        {{ /seller.name }}
+    </template>
+</div>
+
+{* Order items *}
+<div class="row reducible">
+    <div class="col-xs-12">
+        <h4><i class="fa fa-list-alt text-purple"></i> Itens do pedido</h4>
+
+        <table id="order-products" class="table table-bordered table-condensed table-hover">
+            <thead class="bg-gray">
+                <tr>
+                    <th>ID</th>
+                    <th><i class="fa fa-bolt" title="Situação"></i></th>
+                    <th><i class="fa fa-barcode"></i> Produto</th>
+                    <th>Qtde</th>
+                    <th>Preço unitário</th>
+                    <th>Frete</th>
+                    <th>Desconto</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+
+{* Addresses *}
+<div id="order-addresses" class="reducible">
+    <template id="tpl-addresses">
+        {{ #addresses }}
+            <div class="row">
+                <div class="col-xs-12">
+                    <h4><i class="fa fa-map-marker text-fuchsia"></i> {{ addrType }}</h4>
+                </div>
+
+                {* Receiver name *}
+                <div class="col-xs-12 col-md-6 col-lg-7 form-group has-float-label">
+                    <div class="input-group">
+                        <input class="form-control" placeholder="" value="{{ name }}" readonly>
+                        <label>Nome / Razão social</label>
+                    </div>
+                </div>
+
+                {* Customer's document number *}
+                <div class="col-xs-6 col-md-3 form-group has-float-label">
+                    <div class="input-group">
+                        <input class="form-control" placeholder="" value="{{ documentNumber }}" readonly>
+                        <label>CPF/CNPJ</label>
+                    </div>
+                </div>
+
+                {* Customer's phone number *}
+                <div class="col-xs-6 col-md-3 col-lg-2 form-group has-float-label">
+                    <div class="input-group">
+                        <input class="form-control" placeholder="" value="{{ phone }}" readonly>
+                        <label>Telefone</label>
+                    </div>
+                </div>
+
+                {* Address *}
+                <div class="col-xs-12 col-md-7 form-group has-float-label">
+                    <div class="input-group">
+                        <input class="form-control" placeholder="" value="{{ address }}" readonly>
+                        <label>Logradouro</label>
+                    </div>
+                </div>
+
+                {* Number *}
+                <div class="col-xs-5 col-md-2 form-group has-float-label">
+                    <div class="input-group">
+                        <input class="form-control" placeholder="" value="{{ number }}" readonly>
+                        <label>Número</label>
+                    </div>
+                </div>
+
+                {* Complement *}
+                <div class="col-xs-7 col-md-3 form-group has-float-label">
+                    <div class="input-group">
+                        <input class="form-control" placeholder="" value="{{ complement }}" readonly>
+                        <label>Complemento</label>
+                    </div>
+                </div>
+
+                {* Neighborhood *}
+                <div class="col-xs-6 col-md-5 col-lg-4 form-group has-float-label">
+                    <div class="input-group">
+                        <input class="form-control" placeholder="" value="{{ neighborhood }}" readonly>
+                        <label>Bairro</label>
+                    </div>
+                </div>
+
+                {* City *}
+                <div class="col-xs-6 col-md-5 form-group has-float-label">
+                    <div class="input-group">
+                        <input class="form-control" placeholder="" value="{{ city }}" readonly>
+                        <label>Cidade</label>
+                    </div>
+                </div>
+
+                {* State *}
+                <div class="col-xs-3 col-md-2 col-lg-1 form-group has-float-label">
+                    <div class="input-group">
+                        <input class="form-control" placeholder="" value="{{ state }}" readonly>
+                        <label>UF</label>
+                    </div>
+                </div>
+
+                {* Zip code *}
+                <div class="col-xs-5 col-md-2 form-group has-float-label">
+                    <div class="input-group">
+                        <input class="form-control" placeholder="" value="{{ zipCode }}" readonly>
+                        <label>CEP</label>
+                    </div>
+                </div>
+            </div>
+        {{ /addresses }}
+    </template>
+</div>
+
+{* List of transactions *}
+<div class="row reducible">
+    <div class="col-xs-12 margin-bottom">
+        <h4><i class="fa fa-money text-green"></i> Transações de pagamento</h4>
+
+        <table id="order-transactions" class="table table-bordered table-condensed table-hover">
+            <thead class="bg-gray">
+                <tr>
+                    <th>ID</th>
+                    <th><i class="fa fa-bolt" title="Situação"></i></th>
+                    <th>Método</th>
+                    <th>Valor</th>
+                    <th>Parcelas</th>
+                    <th>Tx.Juros</th>
+                    <th>Vencimento</th>
+                    <th>Data</th>
+                </tr>
+            </thead>
+
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+
+{* Financial data *}
+<div id="financial-data" class="row reducible">
+    <template id="tpl-financial">
+        <div class="col-xs-12">
+            <h4><i class="fa fa-calculator text-red"></i> Resumo</h4>
+        </div>
+
+        {* Total value of products *}
+        <div class="col-xs-6 col-md-3 form-group has-float-label">
+            <div class="input-group">
+                <input class="form-control text-right" value="{{ productsValue }}" readonly>
+                <label>Total em produtos</label>
+            </div>
+        </div>
+
+        {* Total value for shipping charges *}
+        <div class="col-xs-6 col-md-3 form-group has-float-label">
+            <div class="input-group">
+                <input class="form-control text-right" value="{{ shippingValue }}" readonly>
+                <label>Frete total</label>
+            </div>
+        </div>
+
+        {* Total value of discount *}
+        <div class="col-xs-6 col-md-3 form-group has-float-label">
+            <div class="input-group">
+                <input class="form-control text-right" value="{{ discountValue }}" readonly>
+                <span class="input-group-btn" data-toggle="tooltip" data-original-title="Cupom de Desconto">
+                    <a class="btn btn-flat btn-vk" href="/discount-coupons#{{ couponId }}">
+                        <i class="fa fa-fw fa-user"></i>
+                    </a>
+                </span>
+                <label>Desconto total</label>
+            </div>
+        </div>
+
+        {* Order subtotal *}
+        <div class="col-xs-6 col-md-3 form-group has-float-label">
+            <div class="input-group">
+                <input class="form-control text-right" value="{{ subtotal }}" readonly>
+                <label>Subtotal</label>
+            </div>
+        </div>
+
+        {* Total of interest value *}
+        <div class="col-xs-6 col-md-3 form-group has-float-label">
+            <div class="input-group">
+                <input class="form-control text-right" value="{{ interestValue }}" readonly>
+                <label>Total de juros</label>
+            </div>
+        </div>
+
+        {* Amount charged to customer *}
+        <div class="col-xs-6 col-md-3 form-group has-float-label">
+            <div class="input-group" data-toggle="tooltip" data-original-title="Valor poderá conter juros em caso de parcelamento">
+                <input class="form-control text-right" value="{{ amountTotal }}" readonly>
+                <label>Total cobrado</label>
+            </div>
+        </div>
+
+        {* Total payd by customer *}
+        <div class="col-xs-6 col-md-3 form-group has-float-label">
+            <div class="input-group" data-toggle="tooltip" data-original-title="Valor poderá conter juros em caso de parcelamento">
+                <input class="form-control text-right" value="{{ totalPayd }}" readonly>
+                <label>Total pago</label>
+            </div>
+        </div>
+
+        {* Returned value to customer *}
+        <div class="col-xs-6 col-md-3 form-group has-float-label">
+            <div class="input-group">
+                <input class="form-control text-right" value="{{ returnedValue }}" readonly>
+                <label>Valor devolvido</label>
+            </div>
+        </div>
+    </template>
+</div>
+
+{* Situation history *}
+<div class="row reducible">
+    <div class="col-xs-12">
+        <h4><i class="fa fa-history text-muted"></i> Histórico</h4>
+
+        <table id="order-user-log" class="table table-bordered table-condensed table-hover">
+            <thead class="bg-gray">
+                <tr>
+                    <th>Data</th>
+                    <th><i class="fa fa-bolt" title="Situação"></i></th>
+                    <th>Situação</th>
+                    <th>Author</th>
+                    <th>IP</th>
+                    <th>Log</th>
+                </tr>
+            </thead>
+
+            <tbody></tbody>
+        </table>
+    </div>
+</div>

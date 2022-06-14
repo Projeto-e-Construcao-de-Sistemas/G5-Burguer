@@ -1,0 +1,3 @@
+/var/cache/*.php
+/var/compiled/*.php
+/vendor/*

@@ -1,0 +1,49 @@
+{strip}
+{nocache}
+        <footer class="main-footer">
+            <div class="row cartnseals">
+                <div class="col-xs-12">
+                    <div class="pull-right hidden-xs">
+                        Versão {$SYSTEM_VERSION} - {$PROJECT_CODE_NAME}
+                    </div>
+                    Copyright &copy; 2015-{date('Y')} <a href="{$urlHome}">Burguer</a>. All rights reserved.
+                </div>
+            </div>
+        </footer>
+    </div>{* <!-- ./wrapper --> *}
+
+    {* <!-- Control Sidebar --> *}
+    {* <aside class="control-sidebar control-sidebar-dark">
+        <ul class="sidebar-menu">
+            {if $admModule.form.forms}
+                {foreach $admModule.form.forms as $form => $props}
+                    {if $props.commands}
+                        {foreach $props.commands as $action => $actProps}
+                            <li data-menu="form-{$form}" data-form-{$form}-action="{$action}" {if $actProps.hidable}class="hidable"{/if} style="display:none;">
+                                <a href="" data-href="#[id]/{$form}[childId]/{$action}">
+                                    <i class="fa fa-{$actProps.icon}"></i> {$actProps.text}
+                                </a>
+                            </li>
+                        {/foreach}
+                    {/if}
+                {/foreach}
+            {/if}
+
+            {if $admModule.form.commands}
+                {foreach $admModule.form.commands as $action => $props}
+                    <li data-menu="form" data-form-action="{$action}" {if $props.hidable}class="hidable"{/if} style="display:none;">
+                        <a href="" data-href="#[id]/{$action}">
+                            <i class="fa fa-{$props.icon}"></i> {$props.text}
+                        </a>
+                    </li>
+                {/foreach}
+            {/if}
+        </ul>
+    </aside>
+    <div class="control-sidebar-bg"></div> *}
+
+    {include "./plugins.js.tpl.html" nocache}
+    {include "./startup.tpl.html" nocache}
+</body>
+</html>
+{/nocache}

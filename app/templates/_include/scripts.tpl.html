@@ -1,0 +1,16 @@
+{strip}
+{include "./plugins.js.tpl.html" nocache}
+
+{* The Main Application *}
+<script src="{assetFile file='app/main.js'}" type="text/javascript"></script>
+<script type="text/javascript">
+    "use strict";
+
+    $(function () {
+        if ('{$appController}') {
+            mainApp.init({$appController|@json_encode nofilter});
+        } else {
+            mainApp.init({ });
+        }
+    });
+</script>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+{strip}{nocache}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="{if $metaDescription}{$metaDescription|replace:'"':''}{else}Burguer Admin{/if}">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <title>{if $pageTitle}{$pageTitle} | {/if}Administrativo Burguer</title>
+
+
+    {include "./plugins.css.tpl.html" nocache}
+
+    {* Theme style *}
+    <link href="{assetFile file='AdminLTE/AdminLTE.min.css'}" rel="stylesheet" type="text/css">
+    <link href="{assetFile file="AdminLTE/skins/skin-green.css"}" rel="stylesheet" type="text/css">
+    {* <!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. --> *}
+    {* <link href="{assetFile file='AdminLTE/skins/_all-skins.min.css'}" rel="stylesheet" type="text/css"> *}
+    <link href="{assetFile file="css/admin.css"}" rel="stylesheet" type="text/css">
+    {if $style}
+        <link href="{assetFile file="css/`$style`.css"}" rel="stylesheet" type="text/css">
+    {/if}
+
+    {* <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries --> *}
+    {* <!-- WARNING: Respond.js doesn't work if you view the page via file:// --> *}
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="skin-green sidebar-mini fixed" data-uid="{if $userLoggedIn}{$userLoggedIn->getPK()}{/if}">
+    <div class="wrapper">
+{/nocache}{/strip}

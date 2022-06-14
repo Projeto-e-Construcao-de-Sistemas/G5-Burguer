@@ -1,0 +1,357 @@
+{strip}
+<div class="row with-thumbnail">
+    {* Product image *}
+    <div class="thumbnail">
+        <img id="product-image" class="img-responsive " src="{assetFile file='img/product_without_image.jpg'}" data-original-src="{assetFile file='img/product_without_image.jpg'}">
+    </div>
+
+    {* Order item data *}
+    <div id="order-item-data">
+        <template id="tpl-order-item">
+            {* Order item situation *}
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5 form-group has-float-label">
+                <div class="input-group">
+                    <span class="input-group-addon">{{{ situationIcon }}}</span>
+                    <input class="form-control" value="{{ situationText }}" readonly>
+                    <label>Situação</label>
+                </div>
+            </div>
+
+            {* Product name *}
+            <div class="col-xs-12 form-group has-float-label">
+                <div class="input-group">
+                    <input class="form-control" value="{{ product_name }}" readonly>
+                    <span class="input-group-btn" data-toggle="tooltip" data-original-title="Cadastro do produto">
+                        <a class="btn btn-flat btn-vk" href="/products#{{ product_id }}">
+                            <i class="fa fa-fw fa-barcode"></i>
+                        </a>
+                    </span>
+                    <label>Produto</label>
+                </div>
+            </div>
+
+            {* Variation description *}
+            <div class="col-xs-12 form-group has-float-label">
+                <div class="input-group">
+                    <input class="form-control" value="{{ variation_description }}" readonly>
+                    <label>Variação</label>
+                </div>
+            </div>
+
+            {* Quantity *}
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3 form-group has-float-label">
+                <div class="input-group">
+                    <input class="form-control text-right" value="{{ quantity }}" readonly>
+                    <label>Quantidade</label>
+                </div>
+            </div>
+
+            {* Unity price *}
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3 form-group has-float-label">
+                <div class="input-group">
+                    <input class="form-control text-right" value="{{ unitPrice }}" readonly>
+                    <label>Preço unitário</label>
+                </div>
+            </div>
+
+            {* Shipping value *}
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3 form-group has-float-label">
+                <div class="input-group">
+                    <input class="form-control text-right" value="{{ shippingValue }}" readonly>
+                    <label>Frete ({{ shippingOrigin }})</label>
+                </div>
+            </div>
+
+            {* Shipping value origin *}
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3 form-group has-float-label">
+                <div class="input-group">
+                    <input class="form-control" value="{{ shippingOrigin }}" readonly>
+                    <label>Origem do preço do frete</label>
+                </div>
+            </div>
+
+            {* Discount value given by store *}
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3 form-group has-float-label">
+                <div class="input-group" data-toggle="tooltip" data-original-title="Desconto concedido pelo vendedor">
+                    <input class="form-control text-right" value="{{ storeDiscountValue }}" readonly>
+                    <label>Desconto loja</label>
+                </div>
+            </div>
+
+            {* Product subtotal *}
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3 form-group has-float-label">
+                <div class="input-group" data-toggle="tooltip" data-original-title="Subtotal do produto">
+                    <input class="form-control text-right" value="{{ subtotal }}" readonly>
+                    <label>Subtotal</label>
+                </div>
+            </div>
+
+            {* Delivery planned for *}
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3 form-group has-float-label">
+                <div class="input-group" data-toggle="tooltip" data-original-title="Data prevista para remessa do produto conforme seus dias de processamento">
+                    <input class="form-control" value="{{ deliveryPlanned }}" readonly>
+                    <label>Remessa para</label>
+                </div>
+            </div>
+
+            {* Arrival expected for *}
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3 form-group has-float-label">
+                <div class="input-group" data-toggle="tooltip" data-original-title="Data prevista para entrega do produto conforme dados de frete">
+                    <input class="form-control" value="{{ arrivalExpected }}" readonly>
+                    <label>Entrega para</label>
+                </div>
+            </div>
+        </template>
+    </div>
+</div>
+
+{* Shipments *}
+<div id="shipments-data">
+    <template id="tpl-shipments">
+        {{ #shipments }}
+            <div class="row">
+                <div class="col-xs-12">
+                    <h4>
+                        {{{ shippingIcon }}} {{ shippingDirection }}
+                    </h4>
+                </div>
+
+                {* Situation *}
+                <div class="col-xs-12 col-sm-6 col-md-3 form-group has-float-label {{  situationClass }}">
+                    <div class="input-group">
+                        <span class="input-group-addon">{{{ situationIcon }}}</span>
+                        <input class="form-control" value="{{ situationText }}" readonly>
+                        <label>Situação</label>
+                    </div>
+                </div>
+
+                {* Carrier *}
+                <div class="col-xs-12 col-sm-6 col-md-5 form-group has-float-label">
+                    <div class="input-group">
+                        <input class="form-control" value="{{ carrier }}" readonly>
+                        <label>Transportadora</label>
+                    </div>
+                </div>
+
+                {* Tracking code *}
+                <div class="col-xs-6 col-sm-6 col-md-4 form-group has-float-label">
+                    <div class="input-group" data-toggle="tooltip" data-original-title="Código de rastreamento da encomenda">
+                        <input class="form-control" value="{{ tracking_code }}" readonly>
+                        <label>Rastreio</label>
+                    </div>
+                </div>
+
+                {* Quantity *}
+                <div class="col-xs-6 col-sm-6 col-md-2 form-group has-float-label">
+                    <div class="input-group" data-toggle="tooltip" data-original-title="Quantidade enviada na remessa">
+                        <input class="form-control text-right" value="{{ quantity }}" readonly>
+                        <label>Quantidade</label>
+                    </div>
+                </div>
+
+                {* Shipped at *}
+                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-2 form-group has-float-label">
+                    <div class="input-group">
+                        <input class="form-control" value="{{ shippeddAt }}" readonly>
+                        <label>Data envio</label>
+                    </div>
+                </div>
+
+                {* Arrival expected for *}
+                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-2 form-group has-float-label">
+                    <div class="input-group" data-toggle="tooltip" data-original-title="Data prevista para entrega do produto">
+                        <input class="form-control" value="{{ arrivalExpected }}" readonly>
+                        <label>Entrega para</label>
+                    </div>
+                </div>
+            </div>
+        {{ /shipments }}
+    </template>
+</div>
+
+{* Designer data *}
+<div id="designer-data">
+    <template id="tpl-designer">
+        <div class="row">
+            <div class="col-xs-12">
+                <h4><i class="fa fa-star-o text-yellow"></i> Designer</h4>
+            </div>
+
+            {* Name *}
+            <div class="col-xs-12 form-group has-float-label">
+                <div class="input-group">
+                    <input class="form-control" value="{{ name }}" readonly>
+                    <span class="input-group-btn" data-toggle="tooltip" data-original-title="Cadastro do designer">
+                        <a class="btn btn-flat btn-vk" href="/designers#{{ id }}">
+                            <i class="fa fa-fw fa-star-o"></i>
+                        </a>
+                    </span>
+                    <label>Nome</label>
+                </div>
+            </div>
+        </div>
+    </template>
+</div>
+
+{* Purchase Order data *}
+<div id="purchase-order-data">
+    <template id="tpl-purchase-order">
+        <div class="row">
+            <div class="col-xs-12">
+                <h4><i class="fa fa-file-text-o text-blue"></i> Ordem de compra</h4>
+            </div>
+
+            {* Purchase Order *}
+            <div class="col-xs-12 col-md-3 form-group has-float-label">
+                <div class="input-group">
+                    <input class="form-control" value="{{ purchaseOrder.order_number }}" readonly>
+                    <span class="input-group-btn" data-toggle="tooltip" data-original-title="Ordem de compra">
+                        <a class="btn btn-flat btn-vk" href="/purchase-orders#{{ purchaseOrder.id }}">
+                            <i class="fa fa-fw fa-file-text-o"></i>
+                        </a>
+                    </span>
+                    <label>Ordem de compra</label>
+                </div>
+            </div>
+
+            {* Factory *}
+            <div class="col-xs-12 col-md-9 form-group has-float-label">
+                <div class="input-group">
+                    <input class="form-control" value="{{ purchaseOrder.factory.name }}" readonly>
+                    <span class="input-group-btn" data-toggle="tooltip" data-original-title="Cadastro da fábrica">
+                        <a class="btn btn-flat btn-vk" href="/factories#{{ purchaseOrder.factory_id }}">
+                            <i class="fa fa-fw fa-industry"></i>
+                        </a>
+                    </span>
+                    <label>Fabricante</label>
+                </div>
+            </div>
+        </div>
+    </template>
+</div>
+
+{* Store data *}
+<div id="store-data">
+    <template id="tpl-store">
+        <div class="row">
+            <div class="col-xs-12">
+                <h4><i class="fa fa-university text-blue"></i> Loja</h4>
+            </div>
+
+            {* Name *}
+            <div class="col-xs-12 form-group has-float-label">
+                <div class="input-group">
+                    <input class="form-control" value="{{ name }}" readonly>
+                    <span class="input-group-btn" data-toggle="tooltip" data-original-title="Cadastro da loja">
+                        <a class="btn btn-flat btn-vk" href="/stores#{{ id }}">
+                            <i class="fa fa-fw fa-university"></i>
+                        </a>
+                    </span>
+                    <label>Nome</label>
+                </div>
+            </div>
+
+            {* Phone number *}
+            <div class="col-xs-6 col-md-3 form-group has-float-label">
+                <div class="input-group">
+                    <input class="form-control" value="{{ phone }}" readonly>
+                    <label>Telefone</label>
+                </div>
+            </div>
+
+            {* Mobile number *}
+            <div class="col-xs-6 col-md-3 form-group has-float-label">
+                <div class="input-group">
+                    <input class="form-control" value="{{ cellphone }}" readonly>
+                    <label>Celular</label>
+                </div>
+            </div>
+
+            {* Referral fees paid by store *}
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 form-group has-float-label">
+                <div class="input-group" data-toggle="tooltip" data-original-title="Reserva Técnica paga pelo vendedor">
+                    <input class="form-control text-right" value="{{ referralFees }}" readonly>
+                    <label>RT loja</label>
+                </div>
+            </div>
+
+            {* Store net value *}
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 form-group has-float-label">
+                <div class="input-group">
+                    <input class="form-control text-right" value="{{ netValue }}" readonly>
+                    <label>Valor loja</label>
+                    <span class="input-group-addon"> <i data-toggle="tooltip" data-original-title="Status do pagamento" class="fa fa-{{ #paymentReleased }}check-square-o text-green{{ /paymentReleased }}{{ ^paymentReleased }}hourglass-half text-red{{ /paymentReleased }}"></i></span>
+                </div>
+            </div>
+        </div>
+    </template>
+</div>
+
+{* Commissioning *}
+<div id="commissioning-data">
+    <template id="tpl-commissioning">
+        {{ #commissioning }}
+            <div class="row">
+                <div class="col-xs-12">
+                    <h4>{{{ commissionIcon }}} {{ commissionType }}</h4>
+                </div>
+
+                {* User *}
+                <div class="col-xs-12 form-group has-float-label">
+                    <div class="input-group">
+                        <input class="form-control" value="{{ name }}" readonly>
+                        <span class="input-group-btn" data-toggle="tooltip" data-original-title="Cadastro do usuário">
+                            <a class="btn  btn-flat btn-vk" href="/users#{{ user_id }}">
+                                <i class="fa fa-fw fa-user"></i>
+                            </a>
+                        </span>
+                        <label>Comissionado</label>
+                    </div>
+                </div>
+
+                {* Customer's e-mail *}
+                <div class="col-xs-12 col-sm-8 col-lg-9 form-group has-float-label">
+                    <div class="input-group">
+                        <input class="form-control" value="{{ email }}" readonly>
+                        <label>e-mail</label>
+                    </div>
+                </div>
+
+                {* Unity price *}
+                <div class="col-xs-6 col-sm-4 col-lg-3 form-group has-float-label">
+                    <div class="input-group">
+                        <input class="form-control text-right" value="{{ commissionValue }}" readonly>
+                        <label>Valor</label>
+                        {{ #willNeverPay }}
+                            <span class="input-group-addon"> <i data-toggle="tooltip" data-original-title="Status do pagamento" class="fa fa-asterisk text-yellow"></i></span>
+                        {{ /willNeverPay }}
+                        {{ ^willNeverPay }}
+                            <span class="input-group-addon"> <i data-toggle="tooltip" data-original-title="Status do pagamento" class="fa fa-{{ #paymentReleased }}check-square-o text-green{{ /paymentReleased }}{{ ^paymentReleased }}hourglass-half text-red{{ /paymentReleased }}"></i></span>
+                        {{ /willNeverPay }}
+                    </div>
+                </div>
+            </div>
+        {{ /commissioning }}
+    </template>
+</div>
+
+{* Situation history *}
+<div class="row">
+    <div class="col-xs-12">
+        <h4><i class="fa fa-history text-muted"></i> Histórico</h4>
+
+        <table id="order-product-log" class="table table-bordered table-condensed table-hover">
+            <thead class="bg-gray">
+                <tr>
+                    <th>Data</th>
+                    <th><i class="fa fa-bolt" title="Situação"></i></th>
+                    <th>Situação</th>
+                    <th>IP</th>
+                    <th>Log</th>
+                </tr>
+            </thead>
+
+            <tbody></tbody>
+        </table>
+    </div>
+</div>

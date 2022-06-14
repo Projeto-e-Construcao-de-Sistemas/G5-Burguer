@@ -1,0 +1,78 @@
+{strip}
+{nocache}
+{* Bootstrap 3.4.1 *}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+{* Font-Awesome 4.7.0 *}
+<link href="https://cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+{* iCheck Plugin *}
+<link href="https://cdn.jsdelivr.net/npm/icheck@1/skins/minimal/blue.min.css" rel="stylesheet" type="text/css">
+
+{* jQuery Confirm *}
+<link href="https://cdn.jsdelivr.net/npm/jquery-confirm@3/dist/jquery-confirm.min.css" rel="stylesheet" type="text/css">
+
+{* Bootstrap-datepicker *}
+{if 'datepicker'|in_array:$plugins}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1/dist/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+{/if}
+
+{* Bootstrap-select *}
+{if 'bootstrap-select'|in_array:$plugins}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13/dist/css/bootstrap-select.min.css" rel="stylesheet" type="text/css">
+{/if}
+
+{* Bootstrap-wysihtml5 *}
+{if 'wysihtml5'|in_array:$plugins}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap3-wysihtml5-bower@0.3/dist/bootstrap3-wysihtml5.css" rel="stylesheet" type="text/css">
+{/if}
+
+{* Cropper *}
+{if 'cropper'|in_array:$plugins}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cropperjs@1.5.12/dist/cropper.min.css" integrity="sha256-6/lyVSOmANjQbKlwD5yu9TsWjR7/gYOv1F4dL9saIIs=" crossorigin="anonymous">
+{/if}
+
+{* DataTables *}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/jszip-2.5.0/dt-1.10.25/b-1.7.1/b-html5-1.7.1/rr-1.2.8/sc-2.0.4/datatables.min.css"/>
+
+{* Date Range Picker *}
+{if 'daterangepicker'|in_array:$plugins}
+    <link href="https://cdn.jsdelivr.net/npm/daterangepicker@3/daterangepicker.min.css" rel="stylesheet">
+{/if}
+
+{* jQuery File Upload Plugin *}
+{if 'fileupload'|in_array:$plugins}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/blueimp-file-upload@10.32.0/css/jquery.fileupload.min.css,npm/blueimp-file-upload@10.32.0/css/jquery.fileupload-ui.min.css">
+    {* <style type="text/css">
+        .files {
+            height: 310px;
+        }
+        .files p {
+            padding-top: 110px;
+        }
+        .files .lead {
+            font-size: 500%;
+        }
+    </style> *}
+{/if}
+
+{* jQuery json-viewer *}
+{if 'json-viewer'|in_array:$plugins}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery.json-viewer@1.4.0/json-viewer/jquery.json-viewer.min.css">
+{/if}
+
+{* Select2 *}
+{if 'select2'|in_array:$plugins}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css">
+    <link href="{assetFile file='css/select2.css'}" rel="stylesheet" type="text/css">
+{/if}
+
+{* Tokenize2 *}
+{if 'tokenize2'|in_array:$plugins}
+    <link href="https://cdn.jsdelivr.net/npm/tokenize2@1/dist/tokenize2.min.css" rel="stylesheet" type="text/css">
+{/if}
+
+{* Toastify *}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js@1.8.0/src/toastify.min.css">
+
+{/nocache}
