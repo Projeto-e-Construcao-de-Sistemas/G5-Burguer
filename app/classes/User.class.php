@@ -23,11 +23,11 @@ class User extends Model
         'email',
         'uuid',
         'password',
+        'avatar_url',
         'name',
         'admin',
         'phone',
         'zip_code',
-        'reset_password_token',
     ];
     protected $hookedColumns = [
         'email'           => 'trimEmail',
@@ -131,13 +131,13 @@ class User extends Model
     {
         // Send the welcome message to the user
         // if (!Session::get('noWelcome')) {
-        //     $mail = new StandardMail('welcome_to_the_user');
-        //     $mail->to($this->email, $this->name);
-        //     $mail->substitutionTag([
-        //         'userName' => $this->name,
-        //     ]);
-        //     $mail->send();
         // }
+        $mail = new StandardMail('welcome-email');
+        $mail->to($this->email, $this->name);
+        $mail->substitutionTag([
+            'user' => $this->name,
+        ]);
+        $mail->send();
     }
 
     /**

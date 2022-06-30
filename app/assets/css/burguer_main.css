@@ -404,3 +404,153 @@ a {
 .menu-categories {
     margin: 10px 40px
 }
+
+.product-container {
+    background-color: white;
+    padding: 10px;
+    width: 300px;
+}
+.product-container > .prod-box{
+    background-color: #6c757d;
+}
+
+/* Forgot password */
+
+.container-forgot {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    padding: 15px;
+
+    background-color: #111;
+}
+
+.wrap-forgot {
+    width: 390px;
+    background-color: #333;
+    border-radius: 10px;
+
+    overflow: hidden;
+    padding: 77px 55px 33px 55px;
+
+    box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.2);
+}
+
+.forgot-form {
+    width: 100%;
+}
+
+.forgot-form-title {
+    font-size: 25px;
+    color: azure;
+    margin: 15px;
+
+    line-height: 1.2;
+    text-align: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.forgot-form-title img {
+    width: 40px;
+    margin: 10px;
+}
+
+.forgot-form-text {
+    font-size: 16px;
+    color: azure;
+    margin: 15px;
+    text-align: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+	margin-bottom: 30px;
+}
+
+.container-forgot-form-btn {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-bottom: 13px;
+}
+
+.forgot-form-btn {
+    font-size: 15px;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+
+    line-height: 1.2;
+
+    text-transform: uppercase;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 50px;
+
+    background: -webkit-linear-gradient(to left, #001d5c, #0051ff);
+    background: -o-linear-gradient(to left, #001d5c, #0051ff);
+    background: -moz-linear-gradient(to left, #001d5c, #0051ff);
+    background: linear-gradient(to left, #001d5c, #0051ff);
+}
+
+.forgot-form-btn:hover {
+    cursor: pointer;
+}
+
+#my-data {
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+
+#eye {
+    cursor: pointer;
+}
+
+.avatar {
+    height: 10rem;
+    width: 10rem;
+    position: relative;
+    display: inline-block;
+    -ms-flex-negative: 0 !important;
+    flex-shrink: 0 !important;
+}
+
+#perfil-image {
+    width: 150px;
+}
+
+.avatar-img {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+#avatar-upload {
+    position: absolute;
+    top: 34px;
+    right: -3px;
+    height: 155px;
+    display: none;
+}
+
+.avatar-lable {
+    position: absolute;
+    top: 34px;
+    right: 2px;
+    height: 155px;
+    width: 155px;
+}

@@ -1018,7 +1018,6 @@ class BaseRESTController extends AclManager
             $this->_parseRow($this->model->get()),
             $status
         );
-        //a
     }
 
     /**

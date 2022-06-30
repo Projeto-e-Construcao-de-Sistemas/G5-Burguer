@@ -19,6 +19,7 @@ class Product extends Model
     public const COL_TYPE = 'type';
     public const COL_SITUATION = 'situation';
     public const COL_NAME = 'name';
+    public const COL_PATH = 'path';
     public const COL_DESCRIPTION = 'description';
     public const COL_PRICE = 'price';
     public const COL_DELETED = 'deleted';
@@ -31,7 +32,6 @@ class Product extends Model
     public const TYPE_DRINK = 3;
 
     protected $tableName = 'products';
-    protected $insertDateColumn = 'created_at';
     protected $deletedColumn = self::COL_DELETED;
     protected $writableColumns = [
         self::COL_TYPE,
@@ -39,6 +39,7 @@ class Product extends Model
         self::COL_NAME,
         self::COL_DESCRIPTION,
         self::COL_PRICE,
+        self::COL_PATH,
     ];
     protected $hookedColumns = [
         self::COL_NAME => 'trimTags',
@@ -62,7 +63,6 @@ class Product extends Model
             [
                 ProductStatus::INACTIVE,
                 ProductStatus::ACTIVE,
-                ProductStatus::DELETED,
             ]
         );
 

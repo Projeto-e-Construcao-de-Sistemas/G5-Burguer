@@ -6,19 +6,30 @@
  */
 
 use Springy\DB\Where;
+use Springy\Kernel;
 
 /**
  * Controller class for the main page.
  */
 class Menu_Controller extends StandardController
 {
-    protected function getProducts() {
+    protected function getPds() {
         $where = new Where();
         $where->condition(Product::COL_SITUATION, ProductStatus::ACTIVE);
-        $product = new Product();
-        $product->query($where);
+        $products = new Product();
+        $products->query($where);
 
-        return $product;
+        // foreach ($products as $product => &$val) {
+        //     $val['newUrl'] = Kernel::path(Kernel::PATH_ROOT) . DS . 'productImages' . DS . $val['url'];
+        // }
+        // while ($products->valid()) {
+        //     $products->url = Kernel::path(Kernel::PATH_ROOT) . DS . 'productImages' . DS . $products->url;
+        //     $products->next();
+        // }
+        // dd($products);
+        // dd(__LINE__);
+
+        return $products;
     }
 
     public function __invoke()
@@ -29,7 +40,8 @@ class Menu_Controller extends StandardController
         }
 
         $this->_template();
-        $this->template->assign('products', $this->getProducts());
+        $this->template->assign('products', $this->getPds());
+        // dd($this->getPds());
         $this->template->display();
     }
 }

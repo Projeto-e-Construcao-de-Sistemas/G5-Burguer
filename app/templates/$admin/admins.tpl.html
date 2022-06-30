@@ -1,0 +1,25 @@
+{strip}
+{assign module 'admins'}
+{include './_include/default.tpl.html'
+    pageTitle = 'Administradores'
+    windowName = 'Administradores'
+    windowIcon = 'dashboard'
+    activeMenu = '#menuItemAdmin'
+    search = []
+    admModule = [
+        'name' => $module,
+        'custom' => true,
+        'table' => [
+            'enabled' => false,
+            'filter' => false,
+            'commands' => []
+        ],
+        'form' => [
+            'enabled' => false,
+            'save' => false
+        ]
+    ]
+    plugins = [
+        'select2'
+    ]
+}

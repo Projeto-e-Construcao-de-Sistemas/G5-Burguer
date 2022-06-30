@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+{strip}
+{$appController=[
+    controller => "{assetFile file='app/site/my-data.js'}",
+    options    => []
+]}
+{$plugins=[
+    'bootstrap',
+    'jqueryui',
+    'inputmask',
+    'load-image',
+    'fileupload'
+]}
+<html>
+{include "./_include/head.tpl.html" nocache}
+<body>
+    {include "./_include/navigation.tpl.html" nocache}
+
+    <div id="my-data" class="container my-4" data-id='{if $userLoggedIn}{$userLoggedIn->getPK()}{/if}'>
+        <hr class="py-2">
+        <main>
+            <div class="row g-5">
+                <div class="col-12">
+                    <h4 class="mb-3"><i class=" fa-solid fa-user"></i> Meus dados</h4>
+                    <form id="my-data-form" class="needs-validation" novalidate="">
+                        <div class="row g-3">
+                            <div class="col-5">
+                                <label for="name" class="form-label">Nome</label>
+                                <div class="input-group has-validation">
+                                    <input type="text" class="form-control" id="name" placeholder="John Doe" required="">
+                                    <div class="invalid-feedback">
+                                        Informe seu nome.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <label for="email" class="form-label">Email</label>
+                                <div class="input-group has-validation">
+                                    <input type="text" class="form-control" id="email" placeholder="johndoe@example.com" required="">
+                                    <div class="invalid-feedback">
+                                        Informe seu email.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <label for="password" class="form-label">Senha</label>
+                                <div class="input-group has-validation">
+                                    <input type="password" class="form-control" id="password" placeholder="Password" required="">
+                                    <span id="eye" class="input-group-text fa-solid fa-eye"></span>
+                                    <div class="invalid-feedback">
+                                        Informe sua senha.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-5">
+                                <label for="zip-code" class="form-label">CEP</label>
+                                <div class="input-group has-validation">
+                                    <input type="tel" name="zip-code" class="form-control" id="zip-code" placeholder="00000-000"/>
+                                </div>
+                            </div>
+
+                            <div class="col-5 mb-4">
+                                <label for="phone" class="form-label">Telefone</label>
+                                <div class="input-group has-validation">
+                                    <input type="tel" name="phone" class="form-control" id="phone" placeholder="(00) 00000-0000"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="w-50 btn btn-primary btn-md mb-4" type="submit">Salvar</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    {include "./_include/scripts.tpl.html" nocache}
+    {include "./_include/footer.tpl.html" nocache}
+</body>

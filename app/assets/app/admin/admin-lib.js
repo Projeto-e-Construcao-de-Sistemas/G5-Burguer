@@ -411,7 +411,7 @@
         return htmlIcon({
             title: productSituationText(situation),
             className: decision(parseInt(situation, 10), {
-                0: 'fa-fw fa-pencil text-gray',
+                0: 'fa-fw fa-eye-slash text-gray',
                 1: 'fa-fw fa-eye text-green',
                 2: 'fa-fw fa-unlink text-warning',
                 3: 'fa-fw fa-trash text-red',
@@ -873,7 +873,7 @@
                 normalizeS2Obj(options, url, processor, filter)
             );
         },
-        setSelectUser: function (filter = false, options = {}) {
+        setSelectUser: function (filter = false, options = { closeOnSelect: true }) {
             return $(this).setSelect2(
                 $.normalizeData(
                     {

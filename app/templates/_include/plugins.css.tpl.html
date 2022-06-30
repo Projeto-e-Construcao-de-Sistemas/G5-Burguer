@@ -9,6 +9,11 @@
     rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 {/if}
 
+{* jQuery File Upload Plugin *}
+{if 'fileupload'|in_array:$plugins}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/blueimp-file-upload@10.32.0/css/jquery.fileupload.min.css,npm/blueimp-file-upload@10.32.0/css/jquery.fileupload-ui.min.css">
+{/if}
+
 {* Select2 *}
 {if 'select2'|in_array:$plugins}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css">

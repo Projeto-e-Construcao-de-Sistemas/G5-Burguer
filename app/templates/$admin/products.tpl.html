@@ -4,7 +4,7 @@
     pageTitle = 'Produtos'
     windowName = 'Produtos'
     windowIcon = 'barcode'
-    activeMenu = '#menuItemRegister #menuItemProducts'
+    activeMenu = '#menuItemProducts'
     search = ['placeholder' => 'Buscar...']
     admModule = [
         'name' => $module,
@@ -13,6 +13,17 @@
             'filter' => false,
             'commands' => [
                 'new' => true
+            ]
+        ],
+        'form' => [
+            'enabled' => true,
+            'save' => true,
+            'commands' => [
+                'delete' => [
+                    'icon' => 'trash',
+                    'text' => 'Excluir',
+                    'hidable' => true
+                ]
             ]
         ]
     ]

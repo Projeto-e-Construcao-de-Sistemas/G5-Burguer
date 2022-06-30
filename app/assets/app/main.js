@@ -84,6 +84,7 @@
         }
 
         $(divElm).addClass([
+            'dyn-overlay',
             modalClassCustom
         ]).css({
             'position': nodeName === 'BODY' ? 'fixed' : 'absolute',

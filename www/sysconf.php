@@ -3,7 +3,7 @@
 $baseDir = realpath(__DIR__ . '/..');
 $GLOBALS['SYSTEM'] = [
     'SYSTEM_NAME'       => 'burguer',
-    'SYSTEM_VERSION'    => [0, 0, 1],
+    'SYSTEM_VERSION'    => [0, 0, 2],
     'PROJECT_CODE_NAME' => 'Mc Donalds',
     'CHARSET'           => 'UTF-8',
     'TIMEZONE'          => 'America/Sao_Paulo',

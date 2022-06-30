@@ -247,16 +247,6 @@ class StandardController extends Controller
     {
         // Restricted page?
         $this->template->assign('restrictedPage', $this->authNeeded);
-        // Creates variables for outer service integrations
-        $this->template->assign(
-            'facebookAppId',
-            Configuration::get('app', 'social.facebook_app_id')
-        );
-
-        $this->template->assign(
-            'integrations',
-            Configuration::get('app', 'integrations')
-        );
     }
 
     /**

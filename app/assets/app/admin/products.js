@@ -20,8 +20,13 @@
 }(typeof self !== 'undefined' ? self : this, function (parent, $) {
     'use strict';
 
+    const edtName = $('#edit-name');
+    const edtType = $('#edit-type');
+    const edtSituation = $('#edit-situation');
+    const edtPrice = $('#edit-price');
+    const edtDesc = $('#edit-description');
+    const productImg = $('#product-image');
 
-    const NO_IMAGE = 'https://via.placeholder.com/400?text=sem+foto';
 
     // Data model
     const dataModel = {
@@ -32,7 +37,7 @@
         'description': '',
         'price': 0,
         'name': '',
-        'url': ''
+        'path': '',
     };
     const dataConv = {
         'price': val => val === null ? 0 : parseFloat(val),
@@ -40,19 +45,15 @@
         'situation': val => parseInt(val, 10),
         'description': val => val || '',
         'name': val => val || '',
+        'path': val => val || '',
     };
 
     // Form fields
     const inpId = $('#record-id');
 
 
-    // Option types
-    const IN_STOCK = '0';
-    const TYPE_EXTERNAL = 'external';
-
     // Current record data
     let currentRecord = $.objectNormalizer(dataModel, dataModel);
-
 
     /**
      * Builds the payload Json.
@@ -61,10 +62,83 @@
     const buildPayload = () => {
         return {
             // Columns
-            // 'name': edtName.val().trim(),
-            // 'price': edtPrice.val() ? edtPrice.val() : null,
+            'name': edtName.val().trim(),
+            'price': edtPrice.val() ? edtPrice.val() : null,
+            'situation': edtSituation.val() ? edtSituation.val() : null,
+            'description': edtDesc.val().trim(),
+            'type': edtType.val(),
+            'path': productImg.attr('src') ? productImg.attr('src') : null
         };
     };
+
+    // Avatar upload
+    $('#input-file-upload').fileupload({
+        url: restfulUrl('products/saveImage'),
+        dataType: 'json',
+        singleFileUploads: true,
+        autoUpload: true,
+        acceptFileTypes: /(\.|\/)(jpe?g|png)$/i,
+        maxFileSize: 5000000, // 5 MB
+        downloadTemplateId: null,
+        uploadTemplateId: null,
+        maxNumberOfFiles: 1
+    }).on('fileuploadprocessalways', (e, data) => {
+        const index = data.index;
+        const file = data.files[index];
+
+        if (file.error) {
+            switch (file.error) {
+            case 'File type not allowed':
+                mainApp.showError('Este tipo de arquivo não é permitido');
+
+                return;
+            case 'File is too large':
+                mainApp.showError('Arquivo muito grande. O limite é de 5MB.');
+
+                return;
+            case 'File is too small':
+                mainApp.showError('Arquivo muito pequeno.');
+
+                return;
+            case 'Maximum number of files exceeded':
+                mainApp.showError('Máximo de 1 arquivo.');
+
+                return;
+            }
+
+            mainApp.showError(file.error);
+        }
+    }).on('fileuploaddone', (e, data) => {
+        data.result.files.forEach(file => {
+            if (file.path) {
+                productImg.attr('src', 'http://burguer.devlocal.com.br/assets/productImages/'+ file.path);
+            } else if (file.error) {
+                var error = $('<span class="text-danger"/>').text(file.error);
+
+                // $(data.context.children()[index])
+                // .append('<br>')
+                // .append(error);
+                imagePanel.children().append('<br>').append(error);
+                btnUploadAvatar.text('ERRO!').prop('disabled', true);
+                // btnUploadAvatar.prepend('<i class="fa fa-exclamation-triangle"></i>');
+            }
+        });
+    }).on('fileuploadfail', (e, data) => {
+        // XHR Error?
+        if (typeof data.jqXHR === 'object' && data.jqXHR.status >= 400) {
+            mainApp.ajaxError(data.jqXHR, 'error', data.errorThrown);
+
+            return;
+        }
+
+        // Other error?
+        if (data.errorThrown) {
+            mainApp.showError(data.errorThrown);
+
+            return;
+        }
+    }).prop('disabled', !$.support.fileInput)
+        .parent().addClass($.support.fileInput ? '' : 'disabled');
 
     /**
      * Calls a special endpoint method.
@@ -86,11 +160,43 @@
     };
 
     /**
+     * Returns an object with list of confirmations for $.confirmAction extension.
+     * @returns {Object}
+     */
+     const confirmations = () => {
+        return {
+            delete: {
+                title: 'Exclusão',
+                content: `Confirma a exclusão definitiva do produto<br><strong>${currentRecord.name}</strong>?`,
+                action: () => {
+                    mainApp.ajax({
+                        url: `products/${currentRecord.id}`,
+                        method: 'DELETE',
+                        success: () => {
+                            location.hash = '';
+                        },
+                        error: () => history.back()
+                    });
+                }
+            },
+        };
+    };
+
+    /**
      * Fills the fields.
      */
     const fillEditForm = () => {
+        productImg.attr('src', currentRecord.path);
         inpId.text(currentRecord.id || '0');
 
+        edtName.val(currentRecord.name);
+        edtType.val(currentRecord.type);
+        edtSituation.val(currentRecord.situation);
+        edtPrice[0].value = parseFloat(currentRecord.price);
+        edtDesc.val(currentRecord.description);
+        if (currentRecord.path !== '') {
+            productImg.attr('src', 'http://burguer.devlocal.com.br/assets/productImages/'+ currentRecord.path);
+        }
     };
 
     /**
@@ -120,9 +226,6 @@
     // Initiates numeric input fields
     $.inputNumber();
 
-    // Initiates Select2 for store filter field
-    // filterStore.setSelect2({}, 'stores');
-
     /**
      * Loads selected data from RESTful API.
      * @param {String|Number} rowId
@@ -135,6 +238,7 @@
             data: {
             },
             success: result => {
+                console.log(result);
                 setRecord(result);
                 callback();
             },
@@ -144,12 +248,15 @@
         });
     };
 
-
     /**
      * Creates the module.
      * @class
      */
     return {
+        // List of actions for the current record
+        actions: {
+            'delete': () => $.confirmAction(confirmations(), 'delete'),
+        },
         /**
          * Returns current record.
          */
@@ -207,6 +314,7 @@
                 }
             ],
             order: [
+                [1, 'asc']
             ],
             stateSave: false
         },
@@ -221,6 +329,8 @@
         formChangeInspect: () => {
             const original = $.objectNormalizer(currentRecord, currentRecord);
             const payload = $.objectNormalizer(buildPayload(), currentRecord, dataConv);
+            let filePath = payload.path.split('/');
+            payload.path = filePath[5];
 
             return !Object.isSimilar(original, payload);
         },
@@ -229,19 +339,17 @@
          */
         formSave: () => {
             const payload = buildPayload();
+            let filePath = payload.path.split('/');
+            payload.path = filePath[5];
 
             mainApp.ajax({
                 url: 'products' + (currentRecord.id ? '/' + currentRecord.id : ''),
                 method: currentRecord.id ? 'PUT' : 'POST',
-                data: Object.assign(
-                    {},
-                    payload,
-                    {
-                    }
-                ),
+                data: payload,
                 dataType: 'json',
                 success: result => {
                     setRecord(result);
+                    console.log(result);
                     fillEditForm();
 
                     // Refresh log table
@@ -266,7 +374,6 @@
          * Initiates the module.
          */
         init: () => {
-            fillEditForm();
         },
     };
 }));

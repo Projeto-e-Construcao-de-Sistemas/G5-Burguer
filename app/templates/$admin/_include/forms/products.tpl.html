@@ -1,11 +1,58 @@
 {strip}
 <div class="row">
+    <div id="root-cat-image" class="col-xs-12 form-group">
+        <label>Imagem da categoria</label>
+        <div class="bg-gray text-center">
+            <img id="product-image" src="" width="300px" class="img-responsive" alt="Imagem do produto" title="Imagem do produto" style="margin: 0 auto;">
+        </div>
+
+        <div id="upload-btn" class="fileinput-button form-control text-center">
+            <i class="fa fa-upload"></i> <span>Definir/alterar a imagem.</span>
+
+            {* The file input field used as target for the file upload widget *}
+            <input id="input-file-upload" type="file" name="file" accept="image/*">
+        </div>
+    </div>
+
     {* Name *}
-    <div class="col-xs-12 col-sm-12 col-lg-6 form-group has-float-label">
+    <div class="col-xs-12 col-sm-12 form-group has-float-label">
         <div class="input-group">
             <input id="edit-name" class="form-control" type="text" placeholder="Nome">
             <label for="edit-name">Nome</label>
         </div>
     </div>
-
+    <div class="col-xs-12 col-sm-8 col-md-4 form-group has-float-label">
+        <div class="input-group">
+            <select id="edit-type" class="form-control">
+                <option value="{Product::TYPE_MEAL}">Lanche</option>
+                <option value="{Product::TYPE_SIDE_DISH}">Acompanhamento</option>
+                <option value="{Product::TYPE_DRINK}">Bebida</option>
+            </select>
+            <label for="edit-type">Tipo de produto</label>
+        </div>
+    </div>
+    {* Situation *}
+    <div class="col-xs-12 col-sm-8 col-md-4 form-group has-float-label">
+        <div class="input-group">
+            <select id="edit-situation" class="form-control">
+                <option value="{ProductStatus::INACTIVE}">Inativo</option>
+                <option value="{ProductStatus::ACTIVE}">Ativo</option>
+            </select>
+            <label for="edit-situation">Status do produto</label>
+        </div>
+    </div>
+    {* Regular price *}
+    <div class="col-xs-6 col-sm-4 form-group has-float-label">
+        <div class="input-group">
+            <input id="edit-price" class="form-control text-right" type="tel" placeholder="" data-decimals="2" min="0.00" max="999999.99" data-input="number" data-prefix="R$ ">
+            <label for="edit-price">Preço</label>
+        </div>
+    </div>
+    {* Description *}
+    <div class="col-xs-12 form-group has-float-label">
+        <div class="input-group">
+            <textarea id="edit-description" class="form-control" placeholder="Descrição" rows="6"></textarea>
+            <label for="edit-description">Descrição</label>
+        </div>
+    </div>
 </div>

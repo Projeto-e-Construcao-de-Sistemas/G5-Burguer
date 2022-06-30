@@ -133,29 +133,32 @@ class Account_Controller extends BaseRESTController
 
         $user = new User($where);
 
-        if (!$user->isLoaded() || $user->suspended) {
+        if (!$user->isLoaded()) {
             $this->_output([]);
 
             return;
         }
 
-        // Send the email to the user
-        $urlResetPassword = Configuration::get('uri', 'common_urls.urlResetPassword');
-        $urlResetPassword[0][] = $user->reset_password_token;
-        // $mail = new StandardMail('resetPassword');
-        // $mail->to($user->email, $user->name);
-        // $mail->substitutionTag([
-        //     'name' => $user->name,
-        //     'url' => URI::buildURL(
-        //         $urlResetPassword[0],
-        //         [],
-        //         $urlResetPassword[2],
-        //         $urlResetPassword[3],
-        //         $urlResetPassword[4]
-        //     ),
-        // ]);
-        // $mail->send();
-        // unset($mail, $user);
+        $newPass = uniqid();
+        $user->password = $newPass;
+
+        $mail = new StandardMail('password-reset');
+        $mail->to($user->email, $user->name);
+        $mail->substitutionTag([
+            'password' => $newPass,
+        ]);
+        $mail->send();
+
+        if (!$user->save()) {
+            $this->_kill(
+                500,
+                $user->validationErrors()->hasAny()
+                    ? implode('<br>', $user->validationErrors()->all())
+                    : 'Não foi possível recuperar sua senha.'
+            );
+        }
+
+        unset($mail, $user);
 
         $this->_output([]);
     }

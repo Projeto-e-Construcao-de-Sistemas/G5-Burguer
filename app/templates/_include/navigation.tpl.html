@@ -27,10 +27,11 @@
                             <a class="bar-icon" href="" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class=" fa-solid fa-user"></i>
                             </a>
-
                             <ul class="dropdown-menu dropdown-menu-end text-bg-secondary" aria-labelledby="dropdownMenuLink">
-                                <li><a class="dropdown-item" href="#"><i class=" fa-solid fa-user"></i> Meu perfil</a></li>
-                                <li><a class="dropdown-item" href="{$urlAdministrative}"><i class=" fa-solid fa-gear"></i> Administrativo</a></li>
+                                <li><a class="dropdown-item" href="{$urlMyData}"><i class=" fa-solid fa-user"></i> Meu perfil</a></li>
+                                {if $userLoggedIn->isAdmin()}
+                                    <li><a class="dropdown-item" href="{$urlAdministrative}"><i class=" fa-solid fa-gear"></i> Administrativo</a></li>
+                                {/if}
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a id="exitBtn" class="dropdown-item" href="{$urlSignOut}"><i class="fa-solid fa-right-from-bracket"></i> Sair</a></li>
                             </ul>

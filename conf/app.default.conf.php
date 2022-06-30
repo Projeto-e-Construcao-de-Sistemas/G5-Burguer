@@ -50,10 +50,13 @@ $conf = [
     ],
 
     'mail' => [
-        'exemplo' => [
-            'mail_template' => 'd-857f4eb1e4924a38ad8340899bfed70d',
+        'welcome-email' => [
+            'mail_template' => 'd-d4173fff790549a2892435c6dd047cc8',
             'subject' => 'Bem-vindo ao Quero Burguer!',
-            'category' => 'user-welcome',
+        ],
+        'password-reset' => [
+            'mail_template' => 'd-96c596cf21a04cddbbd2eef67a39f3b4',
+            'subject' => 'Troca de senha',
         ],
     ],
 ];

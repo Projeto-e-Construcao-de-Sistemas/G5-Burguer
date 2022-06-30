@@ -10,37 +10,30 @@ class Users_Controller extends BaseRESTController
     protected $dataFilters = [
         'id' => 'filterArrayOrInt',
         'consultant_id' => 'filterArrayOrInt',
-        'email' => 'filterEqual',
+        'email' => 'filterLike',
         'name' => 'filterLike',
         'admin' => 'filterEqualInt',
         'suspended' => 'filterEqualInt',
     ];
     protected $authenticationNeeded = true;
-    protected $adminLevelNeeded = true;
+    protected $adminLevelNeeded = false;
     protected $writableColumns = [
-        'consultant_id',
-        'birth_date',
-        'document_number',
         'email',
+        'uuid',
+        'password',
+        'avatar_url',
         'name',
         'phone',
+        'zip_code',
     ];
     protected $routesPUT = [
         'admin',
-        'demote',
-        'promote',
-        'reactivate',
-        'suspend',
     ];
 
     /** @var int is a special method for pre and pos proccessing */
     private $specialMethod = 0;
     /** @var string temporary password */
     private $tmpPass;
-
-    protected const SM_ANY = 1;
-    protected const SM_PRO = 2;
-    protected const SM_NRM = 3;
 
     /**
      * Endpoint to saves admin switch and accesskeys for an user.
@@ -49,8 +42,26 @@ class Users_Controller extends BaseRESTController
      */
     protected function admin(): void
     {
-        $this->writableColumns = ['admin', 'accesskeys'];
+        $this->writableColumns = ['admin'];
         $this->saveNout(self::HTTP_OK);
+    }
+
+    /**
+     * Filters with like.
+     *
+     * @param Where  $where
+     * @param string $value
+     * @param string $column
+     *
+     * @return void
+     */
+    protected function filterLike(Where $where, $value, $column): void
+    {
+        if (trim($value) === '') {
+            return;
+        }
+
+        $where->condition($column, '%' . $value . '%', Where::OP_LIKE);
     }
 
     /**
@@ -135,49 +146,6 @@ class Users_Controller extends BaseRESTController
         }
 
         parent::_setFieldValues();
-    }
-
-    /**
-     * Endpoint to demote an user from professional.
-     */
-    protected function demote()
-    {
-        if (!$this->model->professional) {
-        }
-
-        $this->specialMethod = self::SM_NRM;
-        $this->model->professional = 0;
-        $this->saveNout(self::HTTP_OK);
-    }
-
-    /**
-     * Endpoint to reactivate an user.
-     */
-    protected function reactivate()
-    {
-        if (!$this->model->suspended) {
-            $this->_kill(412, 'Esse usuário não está suspenso.');
-        }
-
-        $this->specialMethod = self::SM_ANY;
-        $this->model->suspended = 0;
-        $this->model->suspended_at = null;
-        $this->saveNout(self::HTTP_OK);
-    }
-
-    /**
-     * Endpoint to suspend an user.
-     */
-    protected function suspend()
-    {
-        if ($this->model->suspended) {
-            $this->_kill(412, 'Esse usuário já está suspenso.');
-        }
-
-        $this->specialMethod = self::SM_ANY;
-        $this->model->suspended = 1;
-        $this->model->suspended_at = date('Y-m-d H:i:s');
-        $this->saveNout(self::HTTP_OK);
     }
 
     protected function triggerAfterInsert(): void
