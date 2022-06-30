@@ -7,6 +7,8 @@
  */
 
 $conf = [
+    'imgPath' => 'http://burguer.devlocal.com.br/assets/productImages/',
+
     'debug'             => true,
     'ignore_deprecated' => true,
     'maintenance'       => false,

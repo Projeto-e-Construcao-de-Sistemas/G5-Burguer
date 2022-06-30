@@ -1,6 +1,5 @@
 <?php
 
-use JsonSchema\Validator as JsonValidator;
 use Springy\Kernel;
 
 /**
@@ -51,7 +50,7 @@ class Products_Controller extends BaseRESTController
         }
 
         $uid = uniqid();
-        $path = $uid . '-' . $name;
+        $path = config_get('system.imgPath') . $uid . '-' . $name;
 
         $img->moveTo(Kernel::path(Kernel::PATH_ROOT) . DS . 'assets' . DS . 'productImages', $uid . '-' . $name);
 
@@ -66,6 +65,20 @@ class Products_Controller extends BaseRESTController
         $this->_output([
             'files' => [$files],
         ]);
+    }
+
+    /**
+     * Convert properties to a array.
+     *
+     * @return array
+     */
+    protected function _parseRow($row)
+    {
+        $path = json_decode($row['path']);
+        $row['path'] = config_get('system.imgPath') . $row['path'];
+
+
+        return $row;
     }
 
     /**

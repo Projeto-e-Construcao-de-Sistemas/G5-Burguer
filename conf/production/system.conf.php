@@ -7,6 +7,8 @@
  */
 
 $conf = [
+    'imgPath' => 'http://burguer.erick.tec.br/assets/productImages/',
+
     'debug'             => false,
     'ignore_deprecated' => true,
     'maintenance'       => false,

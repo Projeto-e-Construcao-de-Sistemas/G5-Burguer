@@ -111,7 +111,7 @@
     }).on('fileuploaddone', (e, data) => {
         data.result.files.forEach(file => {
             if (file.path) {
-                productImg.attr('src', 'http://burguer.devlocal.com.br/assets/productImages/'+ file.path);
+                productImg.attr('src', file.path);
             } else if (file.error) {
                 var error = $('<span class="text-danger"/>').text(file.error);
 
@@ -186,7 +186,7 @@
      * Fills the fields.
      */
     const fillEditForm = () => {
-        productImg.attr('src', currentRecord.path);
+        productImg.attr('src', '');
         inpId.text(currentRecord.id || '0');
 
         edtName.val(currentRecord.name);
@@ -195,7 +195,7 @@
         edtPrice[0].value = parseFloat(currentRecord.price);
         edtDesc.val(currentRecord.description);
         if (currentRecord.path !== '') {
-            productImg.attr('src', 'http://burguer.devlocal.com.br/assets/productImages/'+ currentRecord.path);
+            productImg.attr('src', currentRecord.path);
         }
     };
 
@@ -329,8 +329,10 @@
         formChangeInspect: () => {
             const original = $.objectNormalizer(currentRecord, currentRecord);
             const payload = $.objectNormalizer(buildPayload(), currentRecord, dataConv);
-            let filePath = payload.path.split('/');
-            payload.path = filePath[5];
+            // let filePath = payload.path.split('/');
+            // payload.path = filePath[5];
+            console.log(original);
+            console.log(payload);
 
             return !Object.isSimilar(original, payload);
         },
