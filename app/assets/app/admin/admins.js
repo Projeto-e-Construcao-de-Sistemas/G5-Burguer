@@ -41,10 +41,10 @@
             dataType: 'json',
             success: () => {
                 location.hash = '';
-                $.success('Cliente promovido com sucesso.');
+                $.error('Nenhum usuário encontrado com o email fornecido');
             },
             error: () => {
-                history.back();
+                location.reload();
             }
         });
     });

@@ -74,9 +74,6 @@
         if (inpPhone) {
             data.phone = inpPhone.val();
         }
-        if (inpZip_code[0].value) {
-            data.zip_code = inpZip_code.val();
-        }
 
         mainApp.ajax({
             url: `perfil/save`,

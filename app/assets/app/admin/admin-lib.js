@@ -427,12 +427,8 @@
      */
     const productSituationText = function (situation) {
         return decision(parseInt(situation, 10), {
-            0: 'Rascunho',
+            0: 'Inativo',
             1: 'Ativo',
-            2: 'Inativo',
-            3: 'Excluído',
-            4: 'Suspenso',
-            5: 'Oculto',
         });
     };
 
