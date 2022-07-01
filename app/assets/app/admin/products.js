@@ -238,7 +238,6 @@
             data: {
             },
             success: result => {
-                console.log(result);
                 setRecord(result);
                 callback();
             },
@@ -329,10 +328,6 @@
         formChangeInspect: () => {
             const original = $.objectNormalizer(currentRecord, currentRecord);
             const payload = $.objectNormalizer(buildPayload(), currentRecord, dataConv);
-            // let filePath = payload.path.split('/');
-            // payload.path = filePath[5];
-            console.log(original);
-            console.log(payload);
 
             return !Object.isSimilar(original, payload);
         },
@@ -351,7 +346,6 @@
                 dataType: 'json',
                 success: result => {
                     setRecord(result);
-                    console.log(result);
                     fillEditForm();
 
                     // Refresh log table
