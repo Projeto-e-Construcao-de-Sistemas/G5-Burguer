@@ -35,7 +35,7 @@ a {
     background-color: #333;
     border-radius: 10px;
     overflow: hidden;
-    padding: 77px 55px 33px 55px;
+    padding: 7px 55px 33px 55px;
     box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.2);
 }
 
@@ -46,7 +46,7 @@ a {
 .login-form-title {
     font-size: 25px;
     color: azure;
-    margin: 15px;
+    margin: 30px 15px;
     line-height: 1.2;
     text-align: center;
     display: flex;
@@ -55,7 +55,7 @@ a {
 }
 
 .login-form-title img {
-    width: 40px;
+    width: 265px;
     margin: 10px;
 }
 
@@ -436,7 +436,7 @@ a {
     border-radius: 10px;
 
     overflow: hidden;
-    padding: 77px 55px 33px 55px;
+    padding: 7px 55px 33px 55px;
 
     box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.2);
 }
@@ -459,7 +459,7 @@ a {
 }
 
 .forgot-form-title img {
-    width: 40px;
+    width: 265px;
     margin: 10px;
 }
 
