@@ -3,6 +3,8 @@
 /**
  * Base class for Telegram integration.
  *
+ * @copyright (c) Boobam Design e Arte S.A.
+ * @author    Fernando Val <fernando@fval.com.br>
  */
 
 use Springy\Configuration;
@@ -59,23 +61,23 @@ class Telegram
             JSON_ERROR_UTF8
         ];
 
-        // Kernel::addIgnoredError($errIds);
+        Kernel::addIgnoredError($errIds);
 
-        // try {
-        $this->bot->sendMessage($chatId, $message, $parseMode);
-        // } catch (Exception $err) {
-        //     if (
-        //         !($err instanceof InvalidJsonException)
-        //         && !($err instanceof HttpException)
-        //         && $err->getMessage()
-        //     ) {
-        //         Kernel::delIgnoredError($errIds);
+        try {
+            $this->bot->sendMessage($chatId, $message, $parseMode);
+        } catch (Exception $err) {
+            if (
+                !($err instanceof InvalidJsonException)
+                && !($err instanceof HttpException)
+                && $err->getMessage()
+            ) {
+                Kernel::delIgnoredError($errIds);
 
-        //         new Errors($err->getCode(), $err->getMessage());
-        //     }
-        // }
+                new Errors($err->getCode(), $err->getMessage());
+            }
+        }
 
-        // Kernel::delIgnoredError($errIds);
+        Kernel::delIgnoredError($errIds);
     }
 }
 
