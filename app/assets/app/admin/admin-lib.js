@@ -347,8 +347,23 @@
      */
     const orderReferralText = status => {
         return decision(status, {
-            '0': 'Marketplace',
-            '3': 'Orçamento',
+            '0': 'Aguardando',
+            '1': 'Enviado',
+            '2': 'Entregue',
+            '3': 'Cancelado',
+        });
+    };
+
+    /**
+     * Returns the text for referral of the order.
+     * @param {String|Number} status
+     * @returns {String}
+     */
+    const orderPaymentText = status => {
+        return decision(status, {
+            '1': 'Cartão de Crédito',
+            '2': 'Cartão de Débito',
+            '3': 'Dinheiro',
         });
     };
 
@@ -359,13 +374,27 @@
      */
     const orderSituationIcon = status => {
         return htmlIcon({
-            title: orderSituationText(status),
+            title: orderSituation(status),
             className: decision(status, {
-                '1': 'fa-clock-o text-gray',
-                '2': 'fa-thumbs-o-up text-green',
-                '3': 'fa-check-square-o text-green',
-                '4': 'fa-times text-red',
+                '0': 'fa-clock-o text-gray',
+                '1': 'fa-truck text-blue',
+                '2': 'fa-check-square-o text-green',
+                '3': 'fa-times text-red',
             }, iconBugClassName)
+        });
+    };
+
+    /**
+     * Returns the text of the situation of the order.
+     * @param {String|Number} status
+     * @returns {String}
+     */
+    const orderSituation = status => {
+        return decision(status, {
+            '0': 'Em preparo',
+            '1': 'A caminho',
+            '2': 'Entregue',
+            '3': 'Cancelado',
         });
     };
 
@@ -376,7 +405,7 @@
      */
     const orderSituationText = status => {
         return decision(status, {
-            '1': 'Lanche',
+            '1': 'Hambúrguer',
             '2': 'Acompanhamento',
             '3': 'Bebida',
         });
@@ -1481,6 +1510,7 @@
         orderItemSituationText: orderItemSituationText,
         orderReferralIcon: orderReferralIcon,
         orderReferralText: orderReferralText,
+        orderPaymentText: orderPaymentText,
         orderSituationIcon: orderSituationIcon,
         orderSituationText: orderSituationText,
         productSituationIcon: productSituationIcon,

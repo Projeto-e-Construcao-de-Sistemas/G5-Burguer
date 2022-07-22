@@ -554,3 +554,10 @@ a {
     height: 155px;
     width: 155px;
 }
+
+/* Cart css */
+
+.cart-limit {
+    overflow-y: scroll;
+    max-height: 300px;
+}

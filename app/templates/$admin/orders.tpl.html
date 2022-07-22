@@ -10,7 +10,7 @@
         'name' => $module,
         'table' => [
             'enabled' => true,
-            'filter' => true,
+            'filter' => false,
             'commands' => [
                 'new' => false
             ]
@@ -19,87 +19,29 @@
             'enabled' => true,
             'save' => false,
             'commands' => [
-                'change-seller' => [
-                    'icon' => 'user-circle-o',
-                    'text' => 'Alterar vendedor',
+                'approve' => [
+                    'icon' => 'truck',
+                    'text' => 'Enviar',
                     'hidable' => true
                 ],
-                'approve' => [
+                'done' => [
                     'icon' => 'check',
-                    'text' => 'Approvar',
+                    'text' => 'Concluir',
                     'hidable' => true
                 ],
                 'cancel' => [
                     'icon' => 'times',
                     'text' => 'Cancelar',
                     'hidable' => true
-                ],
-                'pdf' => [
-                    'icon' => 'file-pdf-o',
-                    'text' => 'Download PDF',
-                    'hidable' => true
                 ]
             ],
             'forms' => [
-                'change-seller' => [
-                    'title' => 'Alteração do vendedor do pedido',
-                    'id' => '',
-                    'save' => true
-                ],
-                'product' => [
-                    'title' => 'Item <i class="fa fa-hashtag text-sm"></i><strong id="order-item-id"></strong>',
-                    'id' => '',
-                    'save' => false,
-                    'commands' => [
-                        'delivered' => [
-                            'icon' => 'truck',
-                            'text' => 'Entregue'
-                        ],
-                        'pay-store' => [
-                            'icon' => 'bank',
-                            'text' => 'Creditar a loja'
-                        ],
-                        'commissionate' => [
-                            'icon' => 'graduation-cap',
-                            'text' => 'Liberar comissão'
-                        ],
-                        'cancel' => [
-                            'icon' => 'times-circle',
-                            'text' => 'Cancelar'
-                        ]
-                    ]
-                ],
-                'transaction' => [
-                    'title' => 'Transação <i class="fa fa-hashtag text-sm"></i><strong id="order-transaction-id"></strong>',
-                    'id' => '',
-                    'save' => false,
-                    'commands' => [
-                        'approve' => [
-                            'icon' => 'check',
-                            'text' => 'Confirmar pagamento'
-                        ],
-                        'refund' => [
-                            'icon' => 'recycle',
-                            'text' => 'Reembolsar'
-                        ]
-                    ],
-                    'forms' => [
-                        'refund' => [
-                            'title' => 'Reelbolso da transação <i class="fa fa-hashtag text-sm"></i><strong id="order-transaction-refund-id"></strong>',
-                            'id' => '',
-                            'save' => true
-                        ]
-                    ]
-                ]
+
             ]
         ]
     ]
     plugins = [
-        'crypto-js',
-        'daterangepicker',
         'inputmask',
-        'json-viewer',
-        'mustache',
         'select2'
     ]
 }

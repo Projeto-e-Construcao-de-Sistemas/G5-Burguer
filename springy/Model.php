@@ -698,11 +698,10 @@ class Model extends DB implements \Iterator
             default:
                 $cdtFunc = '\'' . date('Y-m-d H:i:s') . '\'';
         }
-
         $values = $this->_values();
 
         $command = 'INSERT INTO ' . $this->tableName
-            . ' (' . implode(', ', $this->changedColumns());
+        . ' (' . implode(', ', $this->changedColumns());
 
         if (
             $this->insertDateColumn

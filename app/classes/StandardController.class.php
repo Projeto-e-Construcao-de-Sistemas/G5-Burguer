@@ -85,7 +85,6 @@ class StandardController extends Controller
         /** @var Springy\Security\Authentication */
         $authManager = app('user.auth.manager');
 
-        dd("TESTE");
         if ($authManager->check() && $authManager->user()->uuid != $uuid) {
             $this->_forbidden();
         }

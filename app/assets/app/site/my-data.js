@@ -117,7 +117,6 @@
          */
         init: function () {
             fillInput();
-            $('#avatar-upload').val('teste');
         }
     };
 }));

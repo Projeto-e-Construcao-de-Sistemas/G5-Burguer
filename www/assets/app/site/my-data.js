@@ -3,5 +3,4 @@ const autoSelect=function(){$(this).select()};inpPhone.inputmask({mask:['(99) 99
 if(inpEmail.val()){data.email=inpEmail.val()}
 if(inpPassword[0].value){data.password=inpPassword.val()}
 if(inpPhone){data.phone=inpPhone.val()}
-if(inpZip_code[0].value){data.zip_code=inpZip_code.val()}
-mainApp.ajax({url:`perfil/save`,method:'PUT',data:{data},dataType:'json',success:reload,});console.log(data)});$('#eye').mousedown(function(evt){inpPassword.attr('type','text');$('#eye').addClass('fa-eye-slash');$('#eye').removeClass('fa-eye')});$('#eye').mouseup(function(evt){inpPassword.attr('type','password');$('#eye').removeClass('fa-eye-slash');$('#eye').addClass('fa-eye')});const reload=()=>{addOverlay('body');location.reload()};return{init:function(){fillInput();$('#avatar-upload').val('teste')}}}))
+mainApp.ajax({url:`perfil/save`,method:'PUT',data:{data},dataType:'json',success:reload,});console.log(data)});$('#eye').mousedown(function(evt){inpPassword.attr('type','text');$('#eye').addClass('fa-eye-slash');$('#eye').removeClass('fa-eye')});$('#eye').mouseup(function(evt){inpPassword.attr('type','password');$('#eye').removeClass('fa-eye-slash');$('#eye').addClass('fa-eye')});const reload=()=>{addOverlay('body');location.reload()};return{init:function(){fillInput()}}}))

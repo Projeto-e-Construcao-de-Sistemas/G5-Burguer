@@ -14,6 +14,13 @@ $conf = [
             'unsubscribe_group'  => 937,
             'newsletter_list_id' => 540000,
         ],
+        'telegram' => [
+            'enabled'       => true,
+            'token'         => getenv('TG_BOT_TOKEN'),
+            'notifications' => [
+                'webmaster' => -708202798,
+            ],
+        ],
     ],
 
     /*

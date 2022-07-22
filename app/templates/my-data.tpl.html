@@ -17,7 +17,7 @@
     {include "./_include/navigation.tpl.html" nocache}
 
     <div id="my-data" class="container my-4" data-id='{if $userLoggedIn}{$userLoggedIn->getPK()}{/if}'>
-        <hr class="py-2">
+        <hr class="pt-2">
         <main>
             <div class="row g-5">
                 <div class="col-12">
@@ -66,6 +66,31 @@
                 </div>
             </div>
         </main>
+    </div>
+
+    <div class="container bg-white p-3 rounded-3 mb-4">
+        <h4><i class="fa-solid fa-cart-shopping"></i> Pedidos</h4>
+        {foreach $orders as $order}
+            <div href="#" class="container bg-white list-group-item list-group-item-action d-flex gap-3 p-3" aria-current="true">
+                <div class="d-flex gap-2 w-100 justify-content-between">
+                <div>
+                    <h6 class="mb-0">Pedido #{$order.id}</h6>
+                    <p class="mb-0 opacity-75">Status:
+                        {if $order.situation == 0}
+                            Em preparo
+                        {else if $order.situation == 1}
+                            Enviado
+                        {else if $order.situation == 2}
+                            Entregue
+                        {else }
+                            Cancelado
+                        {/if}
+                    </p>
+                </div>
+                <small class="opacity-50 text-nowrap">Total: R${$order.total_value|number_format:2:',':'.'}</small>
+                </div>
+            </div>
+        {/foreach}
     </div>
 
     {include "./_include/scripts.tpl.html" nocache}

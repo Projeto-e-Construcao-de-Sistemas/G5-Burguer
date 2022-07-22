@@ -9,7 +9,6 @@ class Users_Controller extends BaseRESTController
     protected $modelObject = User::class;
     protected $dataFilters = [
         'id' => 'filterArrayOrInt',
-        'consultant_id' => 'filterArrayOrInt',
         'email' => 'filterLike',
         'name' => 'filterLike',
         'admin' => 'filterEqualInt',

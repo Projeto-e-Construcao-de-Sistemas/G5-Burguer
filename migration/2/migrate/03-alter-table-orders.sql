@@ -1,0 +1,2 @@
+ALTER TABLE `orders`
+	ADD COLUMN `payment` TINYINT(3) UNSIGNED NOT NULL AFTER `zip_code`;

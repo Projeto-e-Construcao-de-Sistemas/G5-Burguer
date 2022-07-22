@@ -36,6 +36,12 @@
         let inpName = $('#form_nome').val();
         let inpEmail = $('#form_email').val();
         let inpPsw = $('#form_password').val();
+        let psw = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/;
+
+        if (!$('#form_password').val().match(psw)) {
+            console.log('Senha pequena');
+            return;
+        }
 
         if (
             !inpName ||

@@ -5,6 +5,7 @@
  *
  */
 
+use Springy\Configuration;
 use Springy\DB\Where;
 use Springy\Kernel;
 
@@ -19,16 +20,6 @@ class Menu_Controller extends StandardController
         $products = new Product();
         $products->query($where);
 
-        // foreach ($products as $product => &$val) {
-        //     $val['newUrl'] = Kernel::path(Kernel::PATH_ROOT) . DS . 'productImages' . DS . $val['url'];
-        // }
-        // while ($products->valid()) {
-        //     $products->url = Kernel::path(Kernel::PATH_ROOT) . DS . 'productImages' . DS . $products->url;
-        //     $products->next();
-        // }
-        // dd($products);
-        // dd(__LINE__);
-
         return $products;
     }
 
@@ -41,7 +32,6 @@ class Menu_Controller extends StandardController
 
         $this->_template();
         $this->template->assign('products', $this->getPds());
-        // dd($this->getPds());
         $this->template->display();
     }
 }

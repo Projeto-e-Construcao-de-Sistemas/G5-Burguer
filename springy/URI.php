@@ -89,7 +89,6 @@ class URI
             && !(Configuration::get('uri', 'force_slash_on_index')
             && empty($segments))
         ) {
-            dd(__LINE__);
             // Redirects URIs ending with slash to avoid SEO problem.
             self::redirect(
                 self::buildURL(
@@ -107,7 +106,6 @@ class URI
             && Configuration::get('uri', 'force_slash_on_index')
             && empty($segments)
         ) {
-            dd(__LINE__);
             // Removes ending slash and redirects
             self::redirect(
                 self::buildURL(

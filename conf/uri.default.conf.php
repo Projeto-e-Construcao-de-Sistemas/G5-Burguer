@@ -41,6 +41,7 @@ $conf = [
 
         'urlHome'           => [[], [], false, 'store', true],
         'urlMyData'           => [['my-data'], [], false, 'store', true],
+        'urlCheckout'           => [['checkout'], [], false, 'store', true],
         'urlMenu'           => [['menu'], [], false, 'store', true],
         'urlSignOut'        => [['logout'], [], false, 'store', true],
 
