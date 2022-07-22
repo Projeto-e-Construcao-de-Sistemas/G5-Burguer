@@ -347,7 +347,7 @@
      */
     const orderReferralText = status => {
         return decision(status, {
-            '0': 'Aguardando',
+            '0': 'Em preparo',
             '1': 'Enviado',
             '2': 'Entregue',
             '3': 'Cancelado',
@@ -392,7 +392,7 @@
     const orderSituation = status => {
         return decision(status, {
             '0': 'Em preparo',
-            '1': 'A caminho',
+            '1': 'Enviado',
             '2': 'Entregue',
             '3': 'Cancelado',
         });
