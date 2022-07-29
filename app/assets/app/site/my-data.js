@@ -69,9 +69,9 @@
         if (inpEmail.val()) {
             data.email = inpEmail.val();
         }
+        if (inpPassword[0].value && inpPassword.val().match(psw)) {
             data.password = inpPassword.val();
-        // if (inpPassword[0].value && inpPassword.val().match(psw)) {
-        // }
+        }
         if (inpPhone) {
             data.phone = inpPhone.val();
         }
