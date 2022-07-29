@@ -24,6 +24,13 @@
         $(this).select();
     };
 
+    $('.button-modal').on('click', (evt) => {
+        evt.preventDefault();
+
+        $('.modal-error').toggleClass('d-none');
+        $('#p-error').html('Error');
+    });
+
     // Phone number
     inpPhone.inputmask({
         mask: ['(99) 9999-9999', '(99) 99999-9999'],
@@ -39,6 +46,8 @@
         let psw = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/;
 
         if (!$('#form_password').val().match(psw)) {
+            $('#p-error').html('A senha deve possuir entre 7 e 15 caracteres, possuindo pelo menos um número e um caractere especial');
+            $('.modal-error').toggleClass('d-none');
             console.log('Senha pequena');
             return;
         }

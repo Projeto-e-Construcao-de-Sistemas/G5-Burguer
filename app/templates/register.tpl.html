@@ -5,7 +5,8 @@
     options    => []
 ]}
 {$plugins=[
-    'inputmask'
+    'inputmask',
+    'bootstrap'
 ]}
 <html>
 {include "./_include/head.tpl.html" includeCart=true nocache}
@@ -13,7 +14,7 @@
 	<div class="container">
       <div class="container-register">
         <div class="wrap-login">
-            <form id="signupForm" class="register-form">
+            <form id="signupForm" class="needs-validation" novalidate="">
                 <span class="login-form-title"><img src="{assetFile file="icon/Logo_QueroBurguer.png"}" alt="Logo Quero Burguer" /></span>
 
                 <div class="wrap-input">
@@ -31,15 +32,25 @@
                     <span class="focus-input" data-placeholder="Celular com DDD"></span>
                 </div>
 
-                <div class="wrap-input">
-                    <input id="form_password" name="password" class="has-val input" type="text"/>
+                <div class="wrap-input has-validation">
+                    <input id="form_password" name="password" class="has-val input" required="" type="password"/>
                     <span class="focus-input" data-placeholder="Senha"></span>
+                    <div class="invalid-feedback">
+                        Senha inválida.
+                    </div>
                 </div>
 
                 <div class="container-register-form-btn">
                     <button type="submit" class="register-form-btn">Cadastre-se</input>
                 </div>
             </form>
+
+            <div class="modal-error d-none">
+                <img src="https://100dayscss.com/codepen/alert.png" width="44" height="38" />
+                    <span class="title-error">Oh snap!</span>
+                    <p id="p-error">An error has occured while creating an error report.</p>
+                    <div class="button-modal">Dismiss</div>
+            </div>
 
             <div class="text-center">
                 <span class="txt1">Já possui conta?</span>
