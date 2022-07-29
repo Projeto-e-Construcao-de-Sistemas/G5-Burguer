@@ -46,7 +46,7 @@
         let psw = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/;
 
         if (!$('#form_password').val().match(psw)) {
-            $('#p-error').html('A senha deve possuir entre 7 e 15 caracteres, possuindo pelo menos um número e um caractere especial');
+            $('#p-error').html('A senha estar entre 7 e 15 caracteres sendo pelo menos um número e um caractere especial');
             $('.modal-error').toggleClass('d-none');
             console.log('Senha pequena');
             return;
