@@ -61,7 +61,7 @@
         evt.preventDefault();
 
         let data = {};
-        let psw = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/;
+        // let psw = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/;
 
         if (inpName.val()) {
             data.name = inpName.val();
@@ -69,15 +69,12 @@
         if (inpEmail.val()) {
             data.email = inpEmail.val();
         }
-        if (inpPassword[0].value && !inpPassword.val().match(psw)) {
-            console.log('Senha inválida');
-            // location.reload();
-            return;
-        }
+            data.password = inpPassword.val();
+        // if (inpPassword[0].value && inpPassword.val().match(psw)) {
+        // }
         if (inpPhone) {
             data.phone = inpPhone.val();
         }
-        data.password = inpPassword.val();
 
         mainApp.ajax({
             url: `perfil/save`,
