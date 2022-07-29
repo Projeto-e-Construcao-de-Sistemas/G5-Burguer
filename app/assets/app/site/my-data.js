@@ -69,9 +69,9 @@
         if (inpEmail.val()) {
             data.email = inpEmail.val();
         }
-        if (!inpPassword.val().match(psw)) {
+        if (inpPassword[0].value && !inpPassword.val().match(psw)) {
             console.log('Senha inválida');
-            location.reload();
+            // location.reload();
             return;
         }
         if (inpPhone) {
@@ -88,8 +88,6 @@
             dataType: 'json',
             success: reload,
         });
-
-        console.log(data);
     });
 
     $('#eye').mousedown(function (evt) {
