@@ -3,8 +3,6 @@
 /**
  * Base class for Telegram integration.
  *
- * @copyright (c) Boobam Design e Arte S.A.
- * @author    Fernando Val <fernando@fval.com.br>
  */
 
 use Springy\Configuration;
